@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+<title>stacked bar</title>
+<style>
+.axis text {
+	font: 10px sans-serif;
+}
+.axis path, .axis line {
+	fill: none;
+	stroke: #000;
+	shape-rendering: crispEdges;
+}
+</style>
+</head>
+<body>
+<script>
+/* 
+	an iteration on this bl.ock
+	http://bl.ocks.org/ZJONSSON/2975320 
+	barStack - stacking with negative values
+*/
+
+function barStack(seriesData) {
+	var l = seriesData[0].length
+	while (l--) {
+		var posBase = 0; // positive base
+		var negBase = 0; // negative base
+
+		seriesData.forEach(function(d) {
+			d = d[l]
+			d.size = Math.abs(d.y)
+			if (d.y < 0) {
+				d.y0 = negBase
+				negBase -= d.size
+			} else
+			{
+				d.y0 = posBase = posBase + d.size
+			}
+		})
+	}
+	seriesData.extent = d3.extent(
+		d3.merge(
+			d3.merge(
+				seriesData.map(function(e) { 
+					return e.map(function(f) { return [f.y0,f.y0-f.size] }) 
+				})
+			)
+		)
+	)
+}
+
+/* Here is an example */
+
+// each series is an array of objects
+// our data is in turn an array of those series arrays
+// which is to say
+// an array of arrays of objects
+var data = [
+	[ {y:3},  {y:6},  {y:-3} ],
+	[ {y:4},  {y:-2}, {y:-9} ],
+	[ {y:10}, {y:-3}, {y:4}  ]
+]
+
+var h = 500;
+var w = 500;
+var margin = 20;
+var color = d3.scale.category10();
+
+var x = d3.scale.ordinal()
+	.domain(['abc', 'abc2', 'abc3'])
+	.rangeRoundBands([ margin, w - margin ], .1)
+
+var barWidth = x.rangeBand();
+
+var y = d3.scale.linear()
+	.range([h-margin,0+margin]);
+
+var xAxis = d3.svg.axis()
+	.scale(x)
+	.orient("bottom")
+	.tickSize(6, 0);
+
+var yAxis = d3.svg.axis()
+	.scale(y)
+	.orient("left");
+
+
+
+barStack(data);
+y.domain(data.extent);
+
+console.log("data after barStack", data);
+console.log("data.exent", data.extent);
+
+svg = d3.select("body")
+	.append("svg")
+	.attr("height", h)
+	.attr("width", w)
+
+svg.selectAll(".series")
+	.data(data)
+	.enter()
+	.append("g")
+	.classed("series", true)
+	.style("fill", function(d,i) { return color(i) })
+	.style("opacity", 0.8)
+		.selectAll("rect")
+		.data(Object)
+		.enter()
+		.append("rect")
+			.attr("x", function(d, i) { return x(x.domain()[i]) })
+			.attr("y", function(d) { return y(d.y0) })
+			.attr("height", function(d) { return y(0) - y(d.size) })
+			.attr("width", barWidth)
+			.on("mouseover", function() { tooltip.style("display", null); })
+  		.on("mouseout", function() { tooltip.style("display", "none"); })
+  		.on("mousemove", function(d) {
+    		var xPosition = d3.mouse(this)[0];
+    		var yPosition = d3.mouse(this)[1];
+
+    		var xTooltip = xPosition - 35;
+    		var yTooltip = yPosition - 5;
+
+    		tooltip.select("rect").attr("width", 30)
+    		tooltip.attr("transform", "translate(" + xTooltip + "," + yTooltip + ")");
+    		tooltip.select("text")
+    			.style("text-anchor", "middle")
+    			.attr("x", 15)
+    			.text(d.y);
+  		});
+
+console.log("y(0)", y(0));
+console.log("margin", margin); 
+
+// format the data for the line
+// sum the values for each bar
+var seriesSums = [];
+
+data.forEach(function(d, i) {
+	seriesSums.push([]);
+	data.forEach(function(e, j) {
+		seriesSums[i].push({"y": data[j][i]["y"]})
+	})
+})
+
+console.log("array of values for seriesSums", seriesSums);
+
+seriesSums = seriesSums.map(function(d) {
+	return d.map(function(e) { return e.y }).reduce(function(a,b) { return a + b })
+}) 
+
+console.log("seriesSums", seriesSums);
+
+var line = svg.selectAll("path")
+	.data([seriesSums])
+	.enter()
+	.append("path")
+	.classed("line", true)
+	.attr({
+		d: function(el, index) {
+			var xP = x(x.domain()[0]);
+			console.log(el[0]);
+			var yP = y(el[0]);
+			var string = "M" + [xP,yP];
+			console.log("STRING", string);
+			for(var i = 1; i < el.length; i++) {
+				xP = x(x.domain()[i]);
+				yP = y(el[i]);
+				string += "L" + [xP, yP];
+			}
+			console.log("STRING AFTER", string)
+			return string
+		},
+		"fill": "none",
+		"stroke": "#000",
+		"stroke-width": "4",
+		"stroke-linecap": "round",
+		"stroke-opacity": "0.7"
+	})
+	.attr("transform", "translate(" + barWidth / 2 + "0)")
+	.on("mouseover", function() { tooltip.style("display", null); })
+  .on("mouseout", function() { tooltip.style("display", "none"); })
+  .on("mousemove", function(d) {
+  		var xPosition = d3.mouse(this)[0];
+  		var yPosition = d3.mouse(this)[1];
+
+    	var xTooltip = xPosition + 80;
+    	var yTooltip = yPosition - 5;  		
+
+  		var nearestX = x.domain()[d3.bisect(x.range(), xPosition + ((barWidth + margin)/2)) - 1];
+  		var nearestY = seriesSums[d3.bisect(x.range(), xPosition + ((barWidth + margin)/2)) - 1];
+
+  		var exactY = y.invert(d3.mouse(this)[1]);
+
+  		console.log("xPosition", xPosition)
+  		console.log("x.range()", x.range());
+  		console.log("nearestX", nearestX);
+  		console.log("nearestY", nearestY);
+
+  		/* SVG Title approach to tooltips */
+    	// d3.select(".line").select("title").text(nearestX + " sums to " + nearestY);
+
+    	tooltip.select("rect").attr("width", 52)
+    	tooltip.attr("transform", "translate(" + xTooltip + "," + yTooltip + ")");
+    	tooltip.select("text")
+    		.style("text-anchor", "start")
+    		.attr("x", 8)
+    		.text("net: " + nearestY);
+
+  })
+  .append("title");
+
+
+svg.append("g")
+	.attr("class", "axis x")
+	.attr("transform", "translate(0 " + y(0) + ")")
+	.call(xAxis);
+
+svg.append("g")
+	.attr("class", "axis y")
+	.attr("transform", "translate(" + margin + " 0)")
+	.call(yAxis);
+
+/* Here we add tooltips */
+
+// Prep the tooltips, set default attributes 
+// initial the display property is hidden
+var tooltip = svg.append("g")
+  .attr("class", "tooltip")
+  .style("display", "none");
+    
+tooltip.append("rect")
+	.attr("width", 30)
+  .attr("height", 20)
+  .attr("fill", "white")
+  .style("opacity", 0.5);
+
+tooltip.append("text")
+  .attr("x", 15)
+  .attr("dy", "1.2em")
+  .style("text-anchor", "middle")
+  .attr("font-size", "12px")
+  .attr("font-weight", "bold");
+	
+</script>
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

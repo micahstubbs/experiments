@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  <style>
+    svg{ background-color: green; width: 300px; height: 200px;}
+    body{ font-family: helvetica;}
+  </style>
+  <body>
+    <script>
+    var svg = d3.select('body').append('svg')
+    svg.on('click', function(){
+      console.log("either the svg or something inside it was clicked")
+      console.log("the thing that was actually clicked:", d3.event.target)
+    })
+    svg.append('circle')
+      .attr({cx: 100, cy: 100 , r: 100, fill: 'blue' })
+      .on('click', function(){
+        // the svg click listener will not fire
+        d3.event.stopPropagation()
+        console.log("blue captured the event! svg.on('click') wont get called now")
+      })
+    svg.append('circle')
+      .attr({cx: 200, cy: 100 , r: 100, fill: 'red' })
+      .on('click', function(){
+        console.log("red DID NOT capture the event! svg.on('click') WILL still get called after this")
+      })
+    </script>
+  </body>
+</html>
