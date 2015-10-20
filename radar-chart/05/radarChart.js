@@ -10,6 +10,7 @@ function RadarChart(id, data, options) {
 	 w: 600,				//Width of the circle
 	 h: 600,				//Height of the circle
 	 margin: {top: 20, right: 20, bottom: 20, left: 20}, //The margins around the circle
+	 legendPosition: {x: 20, y: 20}, // the position of the legend, from the top-left corner of the svg
 	 levels: 3,				//How many levels or inner circles should there be drawn
 	 maxValue: 0, 				//What is the value that the biggest circle will represent
 	 labelFactor: 1.25, 			//How much farther than the radius of the outer circle should the labels be placed
@@ -189,7 +190,7 @@ function RadarChart(id, data, options) {
 	blobWrapper
 		.append("path")
 		.attr("class", function(d) {
-			return "radarArea" + " " + d[0][areaName].replace(/\s+/g, '') //Remove spaces from the areaName string to make a one valid class name
+			return "radarArea" + " " + d[0][areaName].replace(/\s+/g, '') //Remove spaces from the areaName string to make one valid class name
 		})
 		.attr("d", function(d,i) { return radarLine(d); })
 		.style("fill", function(d,i) { return cfg.color(i); })
@@ -332,7 +333,7 @@ function RadarChart(id, data, options) {
 
 	svg.append("g")
   	.attr("class", "legendOrdinal")
-  	.attr("transform", "translate(20,20)");
+  	.attr("transform", "translate(" + cfg["legendPosition"]["x"] + "," + cfg["legendPosition"]["y"] + ")");
 
 	var legendOrdinal = d3.legend.color()
   //d3 symbol creates a path-string, for example
