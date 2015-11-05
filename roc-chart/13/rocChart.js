@@ -332,7 +332,44 @@ function rocChart(id, data, options) {
     drawAUCText(d.auc, tpr, d.tipText);
   })
 
+  ///////////////////////////////////////////////////
+  ////// animate through areas for each curve ///////
+  ///////////////////////////////////////////////////
 
+  //sort tprVariables ascending by AUC
+  var tprVariablesAscByAUC = tprVariables.sort(function(a, b) {
+    return a.auc - b.auc;
+  })
+
+  console.log("tprVariablesAscByAUC", tprVariablesAscByAUC);
+  
+  for(var i = 0; i < tprVariablesAscByAUC.length; i++) {
+    areaID = "#" + tprVariablesAscByAUC[i]["name"] + "Area";
+    svg.select(areaID)
+      .transition()
+        .delay(2000 * i)
+        .duration(250)
+        .style("opacity", .4)
+      .transition()
+        .delay(2000 * (i+1))
+        .duration(250)
+        .style("opacity", 0)
+
+    textClass = "." + tprVariablesAscByAUC[i]["name"] + "text";
+    svg.selectAll(textClass)
+      .transition()
+        .delay(2000 * i)
+        .duration(250)
+        .style("opacity", .9)
+      .transition()
+        .delay(2000 * (i+1))
+        .duration(250)
+        .style("opacity", 0)
+  }
+
+  ///////////////////////////////////////////////////
+  ///////////////////////////////////////////////////
+  ///////////////////////////////////////////////////
 
   function generatePoints(data, x, y) {
     var points = [];
@@ -362,3 +399,23 @@ function rocChart(id, data, options) {
   }
 
 } // rocChart
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

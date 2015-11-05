@@ -1,6 +1,8 @@
 ##13
 
 + on mouseover of curve, shade area under curve and show AUC value on plot
++ on load, animate through the area under the curve and the AUC value for
+each curve on the plot
 
 ---
 
@@ -87,4 +89,4 @@ refactor how lines are generated
 
 ---
 
-[Interactive ROC Curve](http://bl.ocks.org/ilanman/f1b4a29749408dd826ef)
+inspired by [Interactive ROC Curve](http://bl.ocks.org/ilanman/f1b4a29749408dd826ef)
