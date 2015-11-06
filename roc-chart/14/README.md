@@ -1,3 +1,10 @@
+##14
+
++ remove tooltip dependency in favor of flat labels inside of area
++ restore cdn web link for d3 dependency
+
+---
+
 ##13
 
 + on mouseover of curve, shade area under curve and show AUC value on plot

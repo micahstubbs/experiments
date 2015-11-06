@@ -18,26 +18,23 @@ function rocChart(id, data, options) {
   //Put all of the options into a variable called cfg
   if('undefined' !== typeof options){
     for(var i in options){
-    if('undefined' !== typeof options[i]){ cfg[i] = options[i]; }
+      if('undefined' !== typeof options[i]){ cfg[i] = options[i]; }
     }//for i
   }//if
 
-  var tips = {};
   var tprVariables = cfg["tprVariables"];
-  // if values for tooltips are not specified
-  // set the default values for the tooltips to the corresponding
+  // if values for labels are not specified
+  // set the default values for the labels to the corresponding
   // true positive rate variable name
   tprVariables.forEach(function(d, i) {
-    if('undefined' === typeof d.tipText){
-      d.tipText = d.name;
+    if('undefined' === typeof d.label){
+      d.label = d.name;
     }
-
-    tips["tip" + i] = tip(d.tipText);
 
   })
 
   console.log("tprVariables", tprVariables);
-  console.log("tips", tips);
+
 
   var interpolationMode = cfg["interpolationMode"],
       fpr = cfg["fpr"],
@@ -101,20 +98,6 @@ function rocChart(id, data, options) {
     return areaGenerator(data);
   }
 
-  // a function that returns a tooltip
-  function tip(tipText) {
-
-    var tip = d3.tip()
-      .attr('class', 'd3-tip')
-      .style("visibility","visible")
-      .offset([-20, 0])
-      .html(function(d) {
-        return tipText; // "Break Points"
-      });
-
-    return tip;
-  }
-
   var svg = d3.select("#roc")
     .append("svg")
       .attr("width", width + margin.left + margin.right)
@@ -124,13 +107,6 @@ function rocChart(id, data, options) {
 
   x.domain([0, 1]);
   y.domain([0, 1]);
-
-  tipRandomGuess = tip("Random guess model")
-  svg.call(tipRandomGuess);
-
-  for(key in tips){
-    svg.call(tips[key]);
-  }
 
   svg.append("g")
       .attr("class", "x axis")
@@ -237,23 +213,16 @@ function rocChart(id, data, options) {
       "stroke-dasharray": "8",
       "opacity": 0.4
     })
-    .on('mouseover', tipRandomGuess.show)
-    .on("mousemove", function(){
-      return tipRandomGuess
-        .style("top", (event.pageY-10)+"px")
-        .style("left",(event.pageX+10)+"px");
-    })
-    .on('mouseout', tipRandomGuess.hide);
 
   // draw the ROC curves
-  function drawCurve(data, tpr, tip, stroke, auc){
+  function drawCurve(data, tpr, stroke){
 
     svg.append("path")
       .attr("class", "curve")
       .style("stroke", stroke)
       .attr("d", curve(data, tpr))
       .on('mouseover', function(d) {
-        //tip.show(d);
+
         var areaID = "#" + tpr + "Area";
         svg.select(areaID)
           .style("opacity", .4)
@@ -262,13 +231,7 @@ function rocChart(id, data, options) {
         svg.selectAll(aucText)
           .style("opacity", .9)
       })
-      /*.on("mousemove", function() { 
-        return tip
-          .style("top", (event.pageY-10)+"px")
-          .style("left",(event.pageX+10)+"px");
-      })*/
       .on('mouseout', function(){
-        //tip.hide();
         var areaID = "#" + tpr + "Area";
         svg.select(areaID)
           .style("opacity", 0)
@@ -332,12 +295,12 @@ function rocChart(id, data, options) {
   // draw curves, areas, and text for each 
   // true-positive rate in the data
   tprVariables.forEach(function(d, i){
-    console.log("drawing the curve for", d.tipText)
+    console.log("drawing the curve for", d.label)
     console.log("color(", i, ")", color(i));
     var tpr = d.name;
     drawArea(data, tpr, color(i))
-    drawCurve(data, tpr, tips["tip" + i], color(i));
-    drawAUCText(d.auc, tpr, d.tipText);
+    drawCurve(data, tpr, color(i));
+    drawAUCText(d.auc, tpr, d.label);
   })
 
   ///////////////////////////////////////////////////
