@@ -1,0 +1,176 @@
+
+<!DOCTYPE html>
+
+<head>
+  <title>County Treemap</title>
+</head>
+<meta charset="utf-8">
+<style>
+
+svg {
+  height: 500px;
+  width: 1000px;
+}
+
+</style>
+<body>
+<div id="viz">
+<svg></svg>
+</div>
+</body>
+
+
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script>
+
+d3.csv("PEP_2014_PEPANNRES_with_ann.csv", cleanCensus);
+
+function cleanCensus(data){
+
+  // loop through the data and parse out some useful variables
+  // append these useful variables to each object in the data array
+  data.forEach(function(county) {
+    county.name = county.label.split(", ")[0]
+    county.state = county.label.split(", ")[1]
+    county.pop = parseInt(county["pop2014"]);
+    county.trend = county["pop2014"] - county["pop2010"] > 0 ? "growth" : "loss";
+    county.rate = (county["pop2014"] - county["pop2010"]) / county["pop2010"];
+  })
+
+  // loop through the data again and calculate growth(loss) rates by state
+  data.forEach(function(county) {
+    var stateSubset = data.filter(function(d) {
+      return d.state === county.state;
+    });
+
+    // calculate the minimum rate of population change for the parent state
+    // and store it on the county
+    county.stateMinChange = d3.min(stateSubset, function(county) {
+      return (county["pop2014"] - county["pop2010"]) / county["pop2010"];
+    })
+
+    // calculate the maximum rate of population change for the parent state
+    // and store it on the county
+    county.stateMaxChange = d3.max(stateSubset, function(county) {
+      return ((county["pop2014"] - county["pop2010"]) / county["pop2010"])  
+    })
+
+  })
+/*
+  var minChange = d3.min(data, function(county) {
+      return (county["pop2014"] - county["pop2010"]) / county["pop2010"];
+    })
+
+  console.log("minChange", minChange);
+  
+  var maxChange = d3.max(data, function(county) {
+    return (county["pop2014"] - county["pop2010"]) / county["pop2010"];
+  })
+
+  console.log("maxChange", maxChange);
+*/  
+  // a scale for generating values from 0 to 1 to use in our HSL color interpolators
+  var colorLinearLoss = d3.scale.linear() 
+    .range([1,0]);
+  
+  var colorLinearGrowth = d3.scale.linear()
+    .range([0,1]);
+  
+  //colors can be specified as any CSS color string
+  var colorInterpolatorGrowth = d3.interpolateHsl("lightgray", "green");
+  var colorInterpolatorLoss = d3.interpolateHsl("lightgray", "red");
+
+  // loop through the data once more and set leaf colors
+  data.forEach(function (county) {
+
+    // set the color based on the rate of population change between 2010 and 2014
+    // use a different color scale for positive rates (growth) and negative rates (loss)
+    if(county.trend === "growth") {
+      colorLinearGrowth.domain([ 0, county["stateMaxChange"] ]);
+      county.leafColorSelected = colorInterpolatorGrowth(colorLinearGrowth(county["rate"]));
+      county.leafColorStatic = "green";
+    } else { // loss
+      colorLinearLoss.domain([ county["stateMinChange"], 0 ]);
+      county.leafColorSelected = colorInterpolatorLoss(colorLinearLoss(county["rate"]));
+      county.leafColorStatic = "red";
+    }  
+
+    county.leafData = parseInt(county["pop2014"]);
+  })
+
+  packableData = nesting(data);
+
+  treemap(packableData);
+}
+
+function nesting(data) {
+
+    nestedData = d3.nest()
+    .key(function (d) {
+      return d.state;
+    })
+    .key(function (d) {
+      return d.trend
+    })
+    .entries(data);
+
+  return packableData = {id: "root", key: "root", values: nestedData}
+}
+
+  function treemap(data) {
+
+  treemap = d3.layout.treemap();
+
+  treemap
+  .size([500,500])
+  .children(function(d) {return d["values"]})
+  .padding(function (d) {return d["values"] ? 2 : 1})
+  .value(function(d) {return d.leafData ? d.leafData : 1})
+
+  treemapData = treemap(data);
+
+  var chartG = d3.select("svg")
+    .append("g")
+    .attr("class", "dendrogram")
+    .attr("transform", "translate(0,0)");
+
+  chartG.selectAll("rect")
+  .data(treemapData)
+  .enter()
+  .append("rect")
+  .attr("x", function (d) {return d.x})
+  .attr("y", function (d) {return d.y})
+  .attr("height", function (d) {return d.dy})
+  .attr("width", function (d) {return d.dx})
+  .attr("class", function (d) {return d.state})
+  .style("fill", function (d) {return d.leafColorStatic ? d.leafColorStatic : "grey"})
+  .style("fill-opacity", function (d) {return d.leafColorStatic ? .6 : .1})
+  .style("stroke", function (d) {return d.leafColorStatic ? d3.rgb(d.leafColorStatic).darker() : "black"})
+  .on("mouseover", function (d) {
+    var stateClass = "." + d.state
+    d3.selectAll(stateClass)
+      .transition()
+      .style("fill", function (d) {return d.leafColorSelected ? d.leafColorSelected : "grey"})
+      .style("fill-opacity", function (d) {return d.leafColorSelected ? 1 : .1})
+      .style("stroke", function (d) {return d.leafColorSelected ? d3.rgb(d.leafColorSelected).darker() : "black"})
+  })
+  .on("mouseout", function (d) {
+    var stateClass = "." + d.state
+    d3.selectAll(stateClass)
+      .transition()
+      .style("fill", function (d) {return d.leafColorStatic ? d.leafColorStatic : "grey"})
+      .style("fill-opacity", function (d) {return d.leafColorStatic ? .6 : .1})
+      .style("stroke", function (d) {return d.leafColorStatic ? d3.rgb(d.leafColorStatic).darker() : "black"})
+  })
+
+  chartG.selectAll("text")
+  .data(treemapData.filter(function (d) {return d.depth === 1}))
+  .enter()
+  .append("text")
+  .attr("x", function (d) {return d.x})
+  .attr("y", function (d) {return d.y + 15})
+  .text(function (d) {return d["key"] ? d["key"].substr(0, parseInt(d.dx / 8)) : ""})
+
+}
+
+</script>

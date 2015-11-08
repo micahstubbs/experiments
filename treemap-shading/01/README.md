@@ -1,0 +1,3 @@
+A treemap of counties by state. Counties are colored in shades of green if they grew from 2010 to 2014 and shades of red if they shrunk in that same period.  The shading is calculated using the minimum `-13.50%` and maximum `71.95%` population growth rate across all counties in all states.  
+
+An iteration on the bl.ock [Treemap](http://bl.ocks.org/emeeks/98f56f3e840143a4eccf/bb68d0c26f6105ec0e71c76d4fe296daca5eaccf) from [emeeks](http://bl.ocks.org/emeeks)
