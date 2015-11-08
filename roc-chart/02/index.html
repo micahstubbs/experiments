@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+body { font: 12px Arial;}
+
+path { 
+    stroke: steelblue;
+    stroke-width: 3;
+    fill: none;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: grey;
+    stroke-width: 2;
+    shape-rendering: crispEdges;
+}
+
+.d3-tip {
+    font-family: Verdana;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 8px;
+    color: #fff; 
+    z-index: 5070;
+  }
+
+</style>
+<body>
+
+<div id="roc"> </div>
+
+<script src="../../lib/d3.js" charset="utf-8"></script>
+<script src="../../lib/d3.tip.v0.6.3.js"></script>
+<script>
+
+var margin = {top: 30, right: 20, bottom: 70, left: 70},
+    width = 450 - margin.left - margin.right,
+    height = 350 - margin.top - margin.bottom;
+
+var x = d3.scale.linear().range([0, width]);
+var y = d3.scale.linear().range([height, 0]);
+
+var xAxis = d3.svg.axis().scale(x)
+    .orient("bottom").ticks(5);
+
+var yAxis = d3.svg.axis().scale(y)
+    .orient("left").ticks(5);
+
+var valueline = d3.svg.line()
+    .interpolate("basis")
+    .x(function(d) { return x(d.X); })
+    .y(function(d) { return y(d.BPC); });
+
+var valueline2 = d3.svg.line()
+    .interpolate("basis")
+    .x(function(d) { return x(d.X); })
+    .y(function(d) { return y(d.WNR); });
+
+var valueline3 = d3.svg.line()
+    .interpolate("basis")
+    .x(function(d) { return x(d.X); })
+    .y(function(d) { return y(d.FSP); });
+
+var valueline4 = d3.svg.line()
+    .interpolate("basis")
+    .x(function(d) { return x(d.X); })
+    .y(function(d) { return y(d.NPW); });
+
+var valueline5 = d3.svg.line()
+    .interpolate("linear")
+    .x(function(d) { return x(d.X); })
+    .y(function(d) { return y(d.USELESS); });
+
+var tip = d3.tip()
+          .attr('class', 'd3-tip')
+          .style("visibility","visible")
+          .offset([-20, 0])
+          .html(function(d) {
+            return "Break Points";
+          });
+
+var tip2 = d3.tip()
+          .attr('class', 'd3-tip')
+          .style("visibility","visible")
+          .offset([-20, 0])
+          .html(function(d) {
+            return "Winners";
+          });
+
+var tip3 = d3.tip()
+          .attr('class', 'd3-tip')
+          .style("visibility","visible")
+          .offset([-20, 0])
+          .html(function(d) {
+            return "First Serve %";
+          });
+
+var tip4 = d3.tip()
+          .attr('class', 'd3-tip')
+          .style("visibility","visible")
+          .offset([-20, 0])
+          .html(function(d) {
+            return "Net Points Won";
+          });
+
+var tip5 = d3.tip()
+          .attr('class', 'd3-tip')
+          .style("visibility","visible")
+          .offset([-20, 0])
+          .html(function(d) {
+            return "Useless model";
+          });
+
+var svg = d3.select("#roc")
+    .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+        .attr("transform", 
+              "translate(" + margin.left + "," + margin.top + ")");
+
+d3.json('data.json',function(error,data){
+    
+    x.domain([0, 1]);
+    y.domain([0, 1]);
+
+    svg.call(tip);
+    svg.call(tip2);
+    svg.call(tip3);
+    svg.call(tip4);
+    svg.call(tip5);
+
+    svg.append("path")
+        .attr("class", "line")
+        .attr("d", valueline(data))
+        .on('mouseover', tip.show)
+        .on("mousemove", function(){return tip.style("top", (event.pageY-10)+"px").
+                              style("left",(event.pageX+10)+"px");})
+        .on('mouseout', tip.hide);
+
+    svg.append("path")          
+        .style("stroke", "red")
+        .attr("d", valueline2(data))
+        .on('mouseover', tip2.show)
+        .on("mousemove", function(){return tip2.style("top", (event.pageY-10)+"px").
+                              style("left",(event.pageX+10)+"px");})
+        .on('mouseout', tip2.hide);
+
+    svg.append("path")          
+        .style("stroke", "green")
+        .attr("d", valueline3(data))
+        .on('mouseover', tip3.show)
+        .on("mousemove", function(){return tip3.style("top", (event.pageY-10)+"px").
+                              style("left",(event.pageX+10)+"px");})
+        .on('mouseout', tip3.hide);
+    
+    svg.append("path")          
+        .style("stroke", "purple")
+        .attr("d", valueline4(data))
+        .on('mouseover', tip4.show)
+        .on("mousemove", function(){return tip4.style("top", (event.pageY-10)+"px").
+                              style("left",(event.pageX+10)+"px");})
+        .on('mouseout', tip4.hide);
+
+    svg.append("path")          
+        .style("stroke", "black")
+        .attr("d", valueline5(data))
+        .on('mouseover', tip5.show)
+        .on("mousemove", function(){return tip5.style("top", (event.pageY-10)+"px").
+                              style("left",(event.pageX+10)+"px");})
+        .on('mouseout', tip5.hide);
+
+    svg.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis)
+       .append("text")            
+        .attr("x", width / 2)
+        .attr("y", 40 )
+        .style("text-anchor", "middle")
+        .text("1 - False Negative Rate");
+
+    svg.append("g")
+        .attr("class", "y axis")
+        .call(yAxis)
+       .append("text")            
+        .attr("transform", "rotate(-90)")
+        .attr("y", 0 - margin.left + 10 )
+        .attr("x", 0 - height/1.6 )
+        .style("font-size","12px")              
+        .style("text-anchor", "left")
+        .text("True Positive Rate");
+
+    svg.append("text")
+        .attr("x", (width / 2))             
+        .attr("y", 0 - (margin.top / 2))
+        .attr("text-anchor", "middle")  
+        .style("font-size", "16px")
+        .text("ROC Curve for Tennis Stats");
+});
+
+</script>
+</body>
