@@ -1,0 +1,3 @@
+date	size'/'remotesize	flags(request:Update,Range state:File response:Modified,Chunked,gZipped)	statuscode	status ('servermsg')	MIME	Etag|Date	URL	localfile	(from URL)
+18:34:22	233/233	---M--	404	error ('NOT%20FOUND')	text/html	date:Sat,%2014%20Nov%202015%2002:34:22%20GMT	http://www.r2d3.us/robots.txt		(from )
+18:34:22	22855/22855	---M--	200	added ('OK')	text/html	date:Sat,%2014%20Nov%202015%2002:34:22%20GMT	http://www.r2d3.us/visual-intro-to-machine-learning-part-1/	/Users/m/workspace/experiments/r2d3-ml/01/www.r2d3.us/visual-intro-to-machine-learning-part-1/index.html	(from )

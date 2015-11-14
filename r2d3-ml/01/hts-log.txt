@@ -1,0 +1,11 @@
+HTTrack3.48-21 launched on Fri, 13 Nov 2015 18:34:21 at http://www.r2d3.us/visual-intro-to-machine-learning-part-1/
+(httrack http://www.r2d3.us/visual-intro-to-machine-learning-part-1/ -O /Users/m/workspace/experiments/r2d3-ml/01 )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+
+HTTrack Website Copier/3.48-21 mirror complete in 1 seconds : 2 links scanned, 1 files written (22855 bytes overall) [23446 bytes received at 23446 bytes/sec]
+(No errors, 0 warnings, 0 messages)
