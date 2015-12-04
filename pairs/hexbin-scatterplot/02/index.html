@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+.axis text {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.hexagon {
+  fill: none;
+  stroke: #000;
+  stroke-width: .5px;
+}
+
+</style>
+<body>
+<script src="//d3js.org/d3.v3.min.js"></script>
+<script src="d3.hexbin.min.js"></script>
+<script>
+
+var margin = {top: 0, right: 0, bottom: 0, left: 0},
+    width = 100 - margin.left - margin.right,
+    height = 100 - margin.top - margin.bottom;
+
+var randomX = d3.random.normal(width / 2, 80),
+    randomY = d3.random.normal(height / 2, 80),
+    points = d3.range(2000).map(function() { return [randomX(), randomY()]; });
+
+var hexbin = d3.hexbin()
+    .size([width, height])
+    .radius(3);
+
+var color = d3.scale.linear()
+    .domain([0, d3.max(hexbin(points), function(d) {
+      return d.length;
+    })])
+    .range(["white", "steelblue"])
+    .interpolate(d3.interpolateLab);
+
+var x = d3.scale.identity()
+    .domain([0, width]);
+
+var y = d3.scale.linear()
+    .domain([0, height])
+    .range([height, 0]);
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+svg.append("clipPath")
+    .attr("id", "clip")
+  .append("rect")
+    .attr("class", "mesh")
+    .attr("width", width)
+    .attr("height", height);
+
+svg.append("g")
+    .attr("clip-path", "url(#clip)")
+  .selectAll(".hexagon")
+    .data(hexbin(points))
+  .enter().append("path")
+    .attr("class", "hexagon")
+    .attr("d", hexbin.hexagon())
+    .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
+    .style("fill", function(d) {
+      return color(d.length) 
+    })
+    .style("stroke", "none");
+
+
+</script>
