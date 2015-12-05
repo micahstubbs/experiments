@@ -2,17 +2,6 @@
 <meta charset="utf-8">
 <style>
 
-.axis text {
-  font: 10px sans-serif;
-}
-
-.axis path,
-.axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
-}
-
 .hexagon {
   fill: none;
   stroke: #000;
@@ -26,8 +15,8 @@
 <script>
 
 var margin = {top: 0, right: 0, bottom: 0, left: 0},
-    width = 100 - margin.left - margin.right,
-    height = 100 - margin.top - margin.bottom;
+    width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
 
 var randomX = d3.random.normal(width / 2, 80),
     randomY = d3.random.normal(height / 2, 80),
@@ -35,7 +24,7 @@ var randomX = d3.random.normal(width / 2, 80),
 
 var hexbin = d3.hexbin()
     .size([width, height])
-    .radius(3);
+    .radius(20);
 
 // the result of the hexbin layout
 var hexbinData = hexbin(points);
