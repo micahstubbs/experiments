@@ -130,12 +130,10 @@ function small_scatterplots(data) {
         pairData['a'] = data.map(function(d) { return d[matrix.a]; })
         pairData['b'] = data.map(function(d) { return d[matrix.b]; })
 
-        // here we hang the pearsonCorrelation function on 
-        // the d3 namespace for convenience
-        var correlation = Math.abs(d3.pearsonCorrelation(pairData, 'a', 'b'));
+        var pearsonCorrelation = d3.pearsonCorrelation(pairData, 'a', 'b');
         var format = d3.format(".2r");
 
-        // show the correlation
+        // show a label
         d3.select(this)
           .append("text")
           .attr("x", 50)
@@ -143,7 +141,7 @@ function small_scatterplots(data) {
           .attr("y", 50)
           .style("font-family", "Roboto")
           .style("font-weight", 400)
-          .text(format(correlation));
+          .text(format(pearsonCorrelation));
 
       // bottom left group
       } else {
