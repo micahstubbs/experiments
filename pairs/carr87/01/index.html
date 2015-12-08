@@ -1,0 +1,151 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Graduated Size and Color Hexbin</title>
+<style>
+
+svg {
+  background: #3b7e77;
+}
+.node {
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+.link {
+  fill: none;
+  stroke: #000;
+  stroke-width: 1.5px;
+  opacity: 0.4;
+  marker-end: url(#end-arrow);
+}
+
+.domain {
+  fill: none;
+  stroke: #5ba8b8;
+}
+
+.tick > line {
+  stroke: #5ba8b8;
+}
+
+.tick > text {
+  fill: #5ba8b8;
+}
+
+</style>
+</head>
+<body>
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8" type="text/javascript"></script>
+<script src="d3.hexbin.js" charset="utf-8" type="text/javascript"></script>
+<script>
+
+var xAtt = "carat";
+var yAtt = "depth";
+
+bgColors = d3.scale.threshold().domain([1,10,100,1000,10000]).range(["none","none","#0481ad","#39957c","#c18779"]);
+fgColors = d3.scale.threshold().domain([1,10,100,1000,10000]).range(["none","#1d3b3d","#035c94","#386b5c","#363b37"]);
+
+//These attributes could be derived from the data
+attributes = ["carat","depth","table","price","x","y","z"];
+
+var sizeScale = d3.scale.linear().domain([0,9]).range([0,9])
+
+d3.csv("diamonds.csv", hexbin);
+
+d3.select("body").append("svg").attr("height", 850).attr("width", 800)
+
+function hexbin(data) {
+
+  //d3.csv pulls in data as strings so they need to be formatted as numbers
+  data.forEach(function (d) {
+    attributes.forEach(function (att) {
+      d[att] = parseFloat(d[att])
+    })
+  })
+
+  xExtent = d3.extent(data, function (d) {return d[xAtt]});
+  xScale = d3.scale.linear();
+  xScale.domain(xExtent).range([20,995]);
+
+  yExtent = d3.extent(data, function (d) {return d[yAtt]});
+  console.log(yExtent)
+  yScale = d3.scale.linear();
+  yScale.domain(yExtent).range([20,995]);
+
+  var hexbin = d3.hexbin()
+    .size([1000,1000])
+    .x(function (d) {return xScale(d[xAtt])})
+    .y(function (d) {return yScale(d[yAtt])})
+    .radius(10);
+
+  //bind the matrix array to a grid of g elements
+  d3.select("svg")
+  .append("g")
+  .attr("class", "hexbin")
+  .attr("transform", function (d) {return "translate(30,-200)" });
+
+  d3.select("g")
+    .selectAll("path.bg")
+    .data(hexbin(data))
+    .enter()
+    .append("path")
+    .style("fill", function (d) {return bgColors(d.length)})
+    .style("stroke", "none")
+    .attr("d", function(d) { return hexbin.hexagon(10); })
+    .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+
+  d3.select("g")
+    .selectAll("path.fg")
+    .data(hexbin(data))
+    .enter()
+    .append("path")
+    .style("fill", function (d) {return fgColors(d.length)})
+    .style("stroke", "none")
+    .attr("d", lastNumber)
+    .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+
+yAxis = d3.svg.axis()
+.scale(yScale)
+.orient("left")
+.ticks(10)
+.tickSize(0)
+.tickSubdivide(true);
+
+xAxis = d3.svg.axis()
+.scale(xScale)
+.orient("bottom")
+.ticks(10)
+.tickSize(0)
+.tickSubdivide(true);
+
+  d3.select("g.hexbin").append("g").call(yAxis)
+
+  d3.select("g.hexbin").append("g").attr("transform", "translate(0,1000)").call(xAxis)
+
+
+function lastNumber(d) {
+
+  var sl = d.length.toString();
+
+  console.log(sl)
+
+  var l = sl;
+  if (sl.length > 1) {
+    l = sl.charAt(sl.length - 1);
+  }
+
+
+  return hexbin.hexagon(parseInt(l));
+}
+
+}
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+A graduated size and color hexbin like that found in [Scatterplot Matrix Techniques for Large N](http://anothersample.net/scatterplot-matrix-techniques-for-large-n). This displays 53,000 values on a scatterplot with some sense of where the most items falls in a way that is lost in traditional graduated symbol or transparency based approaches.
