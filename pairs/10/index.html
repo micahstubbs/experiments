@@ -130,10 +130,17 @@ function small_scatterplots(data) {
         pairData['a'] = data.map(function(d) { return d[matrix.a]; })
         pairData['b'] = data.map(function(d) { return d[matrix.b]; })
 
-        var pearsonCorrelation = d3.pearsonCorrelation(pairData, 'a', 'b');
+        // here we hang the pearsonCorrelation function on 
+        // the d3 namespace for convenience
+        var correlation = Math.abs(d3.pearsonCorrelation(pairData, 'a', 'b'));
         var format = d3.format(".2r");
 
-        // show a label
+        var colorCorrelation = d3.scale.linear()
+          .domain([0,1]) // the possible correlation values range from 0 to 1
+          .range([faintGray, colors(row + col)]) 
+          .interpolate(d3.interpolateLab);
+
+        // show the correlation
         d3.select(this)
           .append("text")
           .attr("x", 50)
@@ -141,7 +148,8 @@ function small_scatterplots(data) {
           .attr("y", 50)
           .style("font-family", "Roboto")
           .style("font-weight", 400)
-          .text(format(pearsonCorrelation));
+          .style("fill", colorCorrelation(correlation))
+          .text(format(correlation));
 
       // bottom left group
       } else {
@@ -163,7 +171,7 @@ function small_scatterplots(data) {
 
       var hexbinData = hexbin(points);
 
-      var color = d3.scale.linear()
+      var colorHexbin = d3.scale.linear()
         .domain([0,d3.max(hexbinData, function(d) {
           return d.length;
         })])
@@ -189,7 +197,7 @@ function small_scatterplots(data) {
             return "translate(" + d.x + "," + d.y + ")"; 
           })
           .style("fill", function(d) {
-            return color(d.length) 
+            return colorHexbin(d.length) 
           })
           .style("stroke", faintGray);
     }
