@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Dynamic Size Example</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.12/crossfilter.min.js"></script>
+    <style>
+
+      /* Make the chart container fill the page using CSS. */
+      #chart {
+        position: fixed;
+        left: 0px;
+        right: 0px;
+        top: 0px;
+        bottom: 0px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div id="chart"></div>
+
+    <script>
+
+// post
+// http://eng.wealthfront.com/2012/09/explore-your-multivariate-data-with-crossfilter.html
+
+// js fiddle example
+// http://jsfiddle.net/hitch17/vSUte/light/
+
+// Extract the width and height that was computed by CSS.
+var chartDiv = document.getElementById("chart");
+var width = chartDiv.clientWidth;
+var height = chartDiv.clientHeight;
+
+// Use the extracted size to set the size of an SVG element.
+var svg = d3.select(chartDiv).append("svg")
+  .attr("width", width)
+  .attr("height", height);
+
+d3.json('data.json', function (error, data) {
+  demo(data);
+});
+
+function demo(data) {
+  
+  var ymdFormat = d3.time.format("%Y-%m-%d");
+  data.forEach(function(d) {
+      d.took_office = ymdFormat.parse(d.took_office);
+
+    if(d.left_office) {
+      d.left_office = ymdFormat.parse(d.left_office);
+    } 
+  });
+
+  var cf = crossfilter(data);
+
+  // Create our dimension by political party
+  var byParty = cf.dimension(function(d) {
+    return d.party;
+  });
+  //console.log('byParty', byParty);
+
+  var groupByParty = byParty.group();
+  groupByParty.top(Infinity).forEach(function(d, i) {
+    console.log(d.key + ": " + d.value);
+  });
+  console.log("\n");
+
+  byParty.filterExact("Whig");
+  byParty.top(Infinity).forEach(function(d, i) {
+    console.log(d.number + ". " + d.president);
+  });
+  console.log("\n");
+
+  byParty.filterAll();
+
+  // Create a dimension for the year a president took office
+  var byTookOffice = cf.dimension(function(d) {
+    return d.took_office;
+  })
+  console.log("Total # of presidents: " + 
+    byTookOffice.top(Infinity).length);
+
+  // filter to presidents starting after 1900
+  byTookOffice.filter([ new Date(1900, 1, 1), Infinity ]);
+  console.log("# of presidents starting after 1900: "
+    + byTookOffice.top(Infinity).length);
+  console.log("\n");
+  
+  console.log("Parties of presidents starting after 1900: ")
+  groupByParty.top(Infinity).forEach(function(d, i) {
+    console.log(d.key + ": " + d.value);
+  })
+  console.log("\n");
+
+}
+
+
+
+    </script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
