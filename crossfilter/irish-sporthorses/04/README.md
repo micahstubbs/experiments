@@ -1,1 +1,1 @@
-set `.style('white-space', 'nowrap')` so that for Northern Ireland and 1999 bar's text fit's within the bar's height
+on mouseover of the county bar the cf object is filtered for only that county.  the `updateMap` function is called, which re-renders the map with only the selected county shaded.  on mouseout of the county bar, the cf object is unfiltered and the `updatemMap` function is called once again.  Now all of the counties on the map have data-driven fill colors.

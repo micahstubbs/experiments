@@ -1,0 +1,1 @@
+abstract out the map svg into a separate file

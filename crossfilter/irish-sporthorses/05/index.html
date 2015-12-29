@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- thanks to http://carisenda.com/sandbox/choropleth/ -->
+
+    <meta charset="utf-8" />
+    <title>Irish Sporthorse Foal Registrations</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+    <script src="http://d3js.org/d3.v2.js"></script>
+    <script src="crossfilter.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
+
+    <link href='http://fonts.googleapis.com/css?family=Carrois+Gothic' rel='stylesheet' type='text/css'>
+
+    <style type="text/css" media="screen">
+        body, html {
+            font-family: 'Carrois Gothic', sans-serif;
+            padding: 0;
+            margin: 0;
+            background-color: #fff;
+        }
+
+        #container {
+            width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        h1 {
+            text-align: center;
+        }
+
+        ul {
+            list-style: none;
+            margin-left: 0;
+            padding-left: 1em;
+            text-indent: -1em;
+        }
+
+        .year_label, .year_total {
+            fill: black;
+            text-align:center;
+            font-family: 'Carrois Gothic', sans-serif;
+            font-size: 18px;
+        }
+        .year_total {
+
+            font-size: 12px;
+        }
+
+        .slide {
+            fill: rgb(247,251,255);
+        }
+
+
+        .enabled {
+            fill: rgb(238,238,238);
+            color: black;
+        }
+
+        .bar {
+            background: red;
+        }
+        .county_list {
+            background: #6bdd8d;
+            font-size: 12px;
+            margin: 1px;
+            padding: 2px;
+        }
+        #map, #stats, #selectbar {
+            float:left;
+        }
+
+        #stats {
+            width: 200px;
+        }
+
+        #nav {
+            height: 140px;
+            vertical-align: bottom;
+        }
+
+        .slide_txt_val {
+            vertical-align: bottom;
+            font-size: smaller;
+        }
+        .big_year {
+            font: 200 60px "Helvetica Neue";
+            fill: #ddd;
+        }
+
+    </style>
+
+</head>
+<body>
+<h1>Sporthorse Foal Registrations</h1>
+<div id="container">
+<div id="nav"></div>
+<div id="selectbar">Breed code<br />Sire's Breedcode</div>
+<div id="map">
+</div> <!-- map -->
+
+<div id="stats"></div>
+</div>
+<script>
+
+  d3.xml("ireland.svg", "image/svg+xml", function(xml) {
+    var importedNode = document.importNode(xml.documentElement, true);
+
+    d3.select("div#map")
+      .each(function() {
+        this.appendChild(importedNode);
+      })
+
+  });
+
+  var w = 700,
+      bar_h = 100,    // height of div holding bars
+      bar_top_margin = 30,  // space above top of highest bar
+      bar_padding = 10; // width between bars + pdding
+      default_height = 30;  // default height of top bar
+
+  d3.csv("foalreg.csv", function(csv) {
+
+    // load and organise data
+
+
+    // clean data
+    csv.forEach(function(v) {
+      v.year = parseInt(v.year);
+      v.foals = parseInt(v.foals);
+      v.mares = parseInt(v.mares);
+      v.coverings = parseInt(v.coverings);
+    });
+
+    // create crossfilter
+    var cf = crossfilter(csv);
+
+    // create dimensions
+    cf.county = cf.dimension(function(d) { return d.county; });
+    cf.year = cf.dimension(function(d) { return d.year; });
+    cf.foals = cf.dimension(function(d) { return d.foals; });
+
+    // totals by year
+    var t1 = cf.year.group()
+      .reduceSum(function(d) { return d.foals; })
+      .top(Infinity);
+
+    // convert to an associative array
+    var year_foals = new Array();
+    t1.forEach(function(v) {
+      year_foals[v.key] = v.value;
+    })
+
+    console.log('cf.county.top(3)', cf.county.top(3));
+
+    drawYearBars(cf);
+    updateChart(cf, 1999);
+
+    ////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////
+
+    function drawYearBars(cf) {
+
+      // create histogram/tabs at top
+      var year_range = [1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011];
+
+      // get a list of the years for which there is data
+      var yrs = cf.year.group()
+        .reduceSum(function(d) { return d.foals; })
+        .top(Infinity)
+      
+      var got_years = new Array();
+
+      yrs.forEach(function(v) {
+          got_years[v.key] = v.value;
+      })
+
+      // scale for histogram
+      var bar_height = d3.scale.linear()
+        .domain([0, d3.max(yrs, function(d) { return d.value; })])
+        .range([0, bar_h]);
+
+      var bar_width = ( w / (year_range.length-1) ) - bar_padding;
+
+      var bar_xpos = d3.scale.linear()
+        .domain([0, year_range.length])
+        .range([0, w]);
+
+      var tabs = d3.select("#nav")
+        .append("svg")
+        .attr("width", w)
+        .attr("height", bar_h + 40);
+
+      tabs.selectAll("rect")
+        .data(year_range)
+        .enter().append("rect")
+        .attr("x", function(d, i) { return bar_xpos(i); })
+        .attr("y", function(d) {
+            if (got_years[d] != undefined) {
+                return bar_h + bar_top_margin - bar_height(got_years[d]);
+            } else {
+                return bar_h + bar_top_margin - default_height;}
+        })
+        .attr("height", function(d) {
+            if (got_years[d] != undefined) {
+                return bar_height(got_years[d]);
+            } else {
+                return default_height;}
+        })
+        .attr("width", bar_width)
+        .attr("id", function(d) { return d; })
+        .attr("class", function(d) {
+            var cls = "slide";
+            if (d in got_years) {
+                cls += " enabled";
+            }
+            return cls;
+        })
+        .on('mouseover', function() {
+            if (got_years[this.id] != undefined) {
+                d3.select(this).style("fill", "#6bdd8d");
+                updateChart(cf, this.id);
+            }
+        })
+        .on("mouseout", function(){
+            if (got_years[this.id] != undefined) {
+                d3.select(this).style("fill", "rgb(238,238,238)");
+            }
+        })
+
+      // add year labels
+      tabs.selectAll(".year_label")
+        .data(year_range)
+        .enter()
+        .append("text")
+          .text(function(d) { return d; })
+          .attr("class", "year_label")
+          .attr("text-anchor", "middle")
+          .attr("x", function(d, i) { 
+            return bar_xpos(i+1) - (bar_width/2) - (bar_padding/2); 
+          })
+          .attr("y", function() { 
+            return (bar_h + bar_top_margin - 10 ); 
+          });
+
+      // add value labels
+      tabs.selectAll(".year_total")
+        .data(year_range)
+        .enter()
+        .append("text")
+        .text(function(d) {
+            if (got_years[d] != undefined) {
+                return got_years[d];
+            } else {
+                return ''}
+        })
+        .attr("class", "year_total")
+        .attr("text-anchor", "middle")
+        .attr("x", function(d, i) { return bar_xpos(i+1) - (bar_width/2) - (bar_padding/2); })
+        .attr("y", function(d) {
+            if (got_years[d] != undefined) {
+                return bar_h + bar_top_margin - 5 - bar_height(got_years[d] ) ;
+            } else {
+                return 0;}
+        });
+    }
+
+    function updateChart(cf, year) {
+
+      var total_foals,
+          data,
+          t,
+          ext,
+          color,
+          map,
+          counties;
+
+      updateMap(cf, year);
+
+      var county_data = cf.foals.top(Infinity);
+      var ext = [0, 900];
+      var county_scale = d3.scale.linear()
+        .domain(ext)
+        .range([0, 150]);
+
+      // show top counties list
+      d3.select("#stats")
+        .selectAll("div")
+        .remove();
+
+      var list = d3.select("#stats")
+        .selectAll("div")
+        .data(county_data)
+
+      list
+        .enter()
+        .append("div")
+        .attr("class", "county_list")
+        .attr("id", function(d) { return d.county + d.year;})
+        .text(function(d) {
+            return toProper(d.county); })
+        .call(div_bar);
+      
+      list
+        .exit().remove();
+
+
+      function div_bar() {
+        this
+          .style("height", "16px")
+          .style('white-space', 'nowrap') 
+          .style("width", function(d) {
+            return county_scale(d.foals)+"px";
+          })
+      }
+
+      // put the year selected on the map
+      d3.select(".big_year").remove();
+
+      var year = d3.select("#ireland").append("text")
+        .attr("class", "big_year")
+        .attr("text-anchor", "end")
+        .attr("y", 490)
+        .attr("x", 360)
+        .text(year);
+
+      setCountyBarMouseoverEvent(cf);
+
+  }
+
+  function updateMap (cf, year) {
+    cf.year.filterExact(year);
+    total_foals = cf.county.group()
+      .reduceSum(function(d) { return d.foals;})
+      .top(Infinity);
+
+    data = cf.county.top(Infinity);
+
+    t = cf.foals.groupAll().value();
+
+    ext = d3.extent(data, function(d) { return d.foals; });
+    ext = [0,1000];
+
+    color = d3.scale.linear()
+      .domain(ext)
+      .range(["white", "green"]);
+
+    map = d3.select('#map');
+
+    counties = map.selectAll('path.republic')
+      .style('fill', function(d){    // would normally use attr but svg has used style for fill
+        var clr = "#fff";
+
+        // only look at items in the counties layer
+        if (this.parentNode.id == "republic") {
+
+          var county = this.id.toUpperCase();
+
+          data.forEach(function(v, i, ar) {
+              if (v.county == county) {
+                  clr =  color(v.foals)
+              }
+          });
+        }
+        return clr;
+
+      });
+
+  }
+
+  function setCountyBarMouseoverEvent (cf) {
+    d3.selectAll('div.county_list')
+      .on('mouseover', function(d) {
+        // style the bar gray
+        d3.select(this).style("background", "rgb(238,238,238)"); 
+
+        cf.county.filter(d.county);
+        updateMap(cf, d.year);
+      })
+      .on("mouseout", function(d) {
+        // style the bar green again
+        d3.select(this).style("background", "#6bdd8d");
+
+        var countyID = toProper(d.county);
+        cf.county.filterAll();
+        updateMap(cf, d.year);
+
+      })
+  } //setCountyBarMouseoverEvent
+
+  });
+
+
+  function toProper(str)
+  {
+      return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+  }
+</script>
+</body>
+</html>
