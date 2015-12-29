@@ -1,1 +1,2 @@
-abstract out the map svg into a separate file
+- abstract out the map svg into a separate file
+- hide the breed code text

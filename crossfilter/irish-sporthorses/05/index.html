@@ -88,6 +88,10 @@
             fill: #ddd;
         }
 
+        #selectbar {
+          opacity: 0;
+        }
+
     </style>
 
 </head>
@@ -95,7 +99,9 @@
 <h1>Sporthorse Foal Registrations</h1>
 <div id="container">
 <div id="nav"></div>
-<div id="selectbar">Breed code<br />Sire's Breedcode</div>
+<div id="selectbar">
+  Breed code<br />Sire's Breedcode
+</div>
 <div id="map">
 </div> <!-- map -->
 
@@ -103,26 +109,15 @@
 </div>
 <script>
 
-  d3.xml("ireland.svg", "image/svg+xml", function(xml) {
-    var importedNode = document.importNode(xml.documentElement, true);
-
-    d3.select("div#map")
-      .each(function() {
-        this.appendChild(importedNode);
-      })
-
-  });
-
   var w = 700,
       bar_h = 100,    // height of div holding bars
       bar_top_margin = 30,  // space above top of highest bar
-      bar_padding = 10; // width between bars + pdding
+      bar_padding = 10; // width between bars + padding
       default_height = 30;  // default height of top bar
 
   d3.csv("foalreg.csv", function(csv) {
 
     // load and organise data
-
 
     // clean data
     csv.forEach(function(v) {
@@ -153,8 +148,16 @@
 
     console.log('cf.county.top(3)', cf.county.top(3));
 
-    drawYearBars(cf);
-    updateChart(cf, 1999);
+    // load svg map
+    d3.xml("ireland.svg", "image/svg+xml", function(xml) {
+      var importedNode = document.importNode(xml.documentElement, true);
+      d3.select("div#map")
+        .each(function() {
+          this.appendChild(importedNode);
+        })
+      drawYearBars(cf);
+      updateChart(cf, 1999);
+    });
 
     ////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////
