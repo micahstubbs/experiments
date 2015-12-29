@@ -5,4 +5,6 @@ html, js, and css files fetched from http://www.r2d3.us/visual-intro-to-machine-
 
 modeled on the answer at http://superuser.com/a/130313/203455
 
-this version with manual modifications required to get the full page running locally
+##03
+
++ convert pie charts to ring charts by setting a new value for `.innerRadius()` in the arc generators.

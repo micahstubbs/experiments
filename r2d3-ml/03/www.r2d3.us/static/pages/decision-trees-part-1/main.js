@@ -3374,7 +3374,7 @@ var GiniPieChartView = Backbone.View.extend({
 
     this.arc = d3.svg.arc()
       .outerRadius(this.sizes.radiusFn(this.radius))
-      .innerRadius(0);
+      .innerRadius(this.sizes.radiusFn(this.radius/2));
 
     this.pie = d3.layout.pie()
       .sort(null)
@@ -3431,7 +3431,7 @@ var GiniPieChartView = Backbone.View.extend({
 
       this.arc = d3.svg.arc()
         .outerRadius(this.sizes.radiusFn(this.data.total))
-        .innerRadius(0);
+        .innerRadius(this.sizes.radiusFn(this.data.total)/2);
 
       this.rr = true;
     };
@@ -3463,7 +3463,7 @@ var GiniPieChartView = Backbone.View.extend({
 
     this.arc = d3.svg.arc()
       .outerRadius(this.radius)
-      .innerRadius(0);
+      .innerRadius(this.radius/2);
 
     this.selection.data(this.pie(this.current.parts));
 
@@ -4113,7 +4113,7 @@ var TreePieView = Backbone.View.extend({
       this.radius = newRadius;
       this.arc = d3.svg.arc()
         .outerRadius(this.radius)
-        .innerRadius(0);
+        .innerRadius(this.radius/2);
       return true;
     } else {
       return false;
