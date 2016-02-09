@@ -5,11 +5,10 @@
 
     <meta charset="utf-8" />
     <title>Irish Sporthorse Foal Registrations</title>
-    <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>-->
-    <script src="jquery.min.js"></script>
-    <!--<script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>-->
-    <script src="d3.min.js" charset="utf-8"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+    <script src="http://d3js.org/d3.v2.js"></script>
     <script src="crossfilter.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
 
     <link href='http://fonts.googleapis.com/css?family=Carrois+Gothic' rel='stylesheet' type='text/css'>
 
@@ -278,8 +277,7 @@
           ext,
           color,
           map,
-          countiesRepublic,
-          countiesNI;
+          counties;
 
       updateMap(cf, year);
 
@@ -353,14 +351,10 @@
 
     map = d3.select('#map');
 
-    ///////////////////////////////////////////////////////////////////////////////////////////
-    ////////////// shade the counties of the Republic of Ireland individually /////////////////
-    ///////////////////////////////////////////////////////////////////////////////////////////
-
-    countiesRepublic = map.selectAll('path.republic')
-      .style('fill', function(d) {    // would normally use attr but svg has used style for fill
-        
+    counties = map.selectAll('path.republic')
+      .style('fill', function(d){    // would normally use attr but svg has used style for fill
         var clr = "#fff";
+
         // only look at items in the counties layer
         if (this.parentNode.id == "republic") {
 
@@ -375,34 +369,6 @@
         return clr;
 
       });
-
-    ///////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////// shade the counties of Northern Ireland together ///////////////////////
-    ///////////////////////////////////////////////////////////////////////////////////////////
-
-    countiesNI = map.selectAll('path.northernireland')
-      .style('fill', function(d) {    // would normally use attr but svg has used style for fill
-        
-        var clr = "#fff";
-        // only look at items in the counties layer
-        if (this.parentNode.id == "northernireland") {
-
-          var county = this.id.toUpperCase();
-
-          data.forEach(function(v, i, ar) {
-              if (v.county == "NORTHERN IRELAND") {
-                  clr =  color(v.foals)
-              }
-          });
-        }
-        return clr;
-
-      });
-
-    ///////////////////////////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////////////////////////
-
 
   }
 
