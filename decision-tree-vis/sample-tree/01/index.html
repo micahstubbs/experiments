@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+.node circle {
+  stroke-width: 1.5px;
+}
+.node {
+  font: 12px sans-serif;
+}
+.link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 1.5px;
+}
+</style>
+<body>
+<script src="//d3js.org/d3.v3.min.js"></script>
+<script>
+var width = 1600,
+    height = 800;
+var tree = d3.layout.tree()
+    .size([height, width - 320]);
+var diagonal = d3.svg.diagonal()
+    .projection(function(d) { return [d.y, d.x]; });
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height)
+  .append("g")
+    .attr("transform", "translate(40,0)");
+var data = {"id":1,"isLeaf":false,"parent":-1,"feature":"","label":"All","probability":"NaN","size":"NaN","segmentid":"NaN","children":[{"id":2,"isLeaf":false,"parent":1,"feature":"NumberCustomerServiceCalls","label":"<= 3","probability":"NaN","size":"NaN","segmentid":"NaN","children":[{"id":3,"isLeaf":false,"parent":2,"feature":"InternationalPlan","label":"= no","probability":"NaN","size":"NaN","segmentid":"NaN","children":[{"id":4,"isLeaf":false,"parent":3,"feature":"TotalLocalMinutes","label":"> 600","probability":"NaN","size":"NaN","segmentid":"NaN","children":[{"id":5,"isLeaf":false,"parent":4,"feature":"TotalDayMinutes","label":"> 210","probability":"NaN","size":"NaN","segmentid":"NaN","children":[{"id":6,"isLeaf":true,"parent":5,"feature":"DataPlan","label":"= no","probability":0.135,"size":0.05,"segmentid":2,"children":[]},{"id":7,"isLeaf":true,"parent":5,"feature":"DataPlan","label":"= yes","probability":0.114,"size":0.08,"segmentid":5,"children":[]}]},{"id":8,"isLeaf":true,"parent":4,"feature":"TotalDayMinutes","label":"<= 210","probability":0.129,"size":0.08,"segmentid":3,"children":[]}]},{"id":9,"isLeaf":true,"parent":3,"feature":"TotalLocalMinutes","label":"<= 600","probability":0.06,"size":0.29,"segmentid":9,"children":[]}]},{"id":10,"isLeaf":false,"parent":2,"feature":"InternationalPlan","label":"= yes","probability":"NaN","size":"NaN","segmentid":"NaN","children":[{"id":11,"isLeaf":false,"parent":10,"feature":"TotalIntlMinutes","label":"<= 13","probability":"NaN","size":"NaN","segmentid":"NaN","children":[{"id":12,"isLeaf":true,"parent":11,"feature":"TotalIntlCalls","label":"<= 3","probability":0.081,"size":0.05,"segmentid":7,"children":[]},{"id":13,"isLeaf":true,"parent":11,"feature":"TotalIntlCalls","label":"> 3","probability":0.15,"size":0.04,"segmentid":1,"children":[]}]}]}]},{"id":14,"isLeaf":false,"parent":1,"feature":"NumberCustomerServiceCalls","label":"> 3","probability":"NaN","size":"NaN","segmentid":"NaN","children":[{"id":15,"isLeaf":false,"parent":14,"feature":"TotalLocalMinutes","label":"> 500","probability":"NaN","size":"NaN","segmentid":"NaN","children":[{"id":16,"isLeaf":true,"parent":15,"feature":"DataPlan","label":"= yes","probability":0.12,"size":0.08,"segmentid":4,"children":[]},{"id":17,"isLeaf":true,"parent":15,"feature":"DataPlan","label":"= no","probability":0.09,"size":0.06,"segmentid":6,"children":[]}]},{"id":18,"isLeaf":true,"parent":14,"feature":"TotalLocalMinutes","label":"<= 500","probability":0.075,"size":0.19,"segmentid":8,"children":[]}]}]}
+  var nodes = tree.nodes(data),
+      links = tree.links(nodes);
+  var link = svg.selectAll("path.link")
+      .data(links)
+    .enter().append("path")
+      .attr("class", "link")
+      .attr("d", diagonal);
+  var node = svg.selectAll("g.node")
+      .data(nodes)
+    .enter().append("g")
+      .attr("class", "node")
+      .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; })
+  var color = d3.scale.linear()
+    .domain([0, 0.15])
+    .range(["white", "red"]);
+  
+  node.append("circle")
+      .attr("r", function(d) { return d.isLeaf ? 150 * d.size : 4.5; })
+  		.attr("fill", function(d) { return  d.isLeaf ? color(d.probability) : "" });
+	
+  node.append("text")
+      .attr("dx", -16)
+      .attr("dy", 3)
+      .attr("text-anchor", "end")
+      .text(function(d) { return d.feature + " " + d.label; });
+  node.append("text")
+      .attr("dx", 32)
+      .attr("dy", 3)
+      .attr("font-weight", "bold")
+      .attr("text-anchor", "start")
+      .text(function(d) { return d.isLeaf ? "Segment "+d.segmentid + " (churn: " + d.probability*100 + "%, size: " + d.size*100 + "%)" : ""; });
+d3.select(self.frameElement).style("height", height + "px");
+</script>
