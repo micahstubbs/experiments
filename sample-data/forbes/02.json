@@ -1,0 +1,46 @@
+[
+  {
+    "sector": "Financials",
+    "averageProfit": 1.734939759036144
+  },
+  {
+    "sector": "Energy",
+    "averageProfit": 3.05206611570248
+  },
+  {
+    "sector": "Industrials",
+    "averageProfit": 0.951145038167939
+  },
+  {
+    "sector": "Consumer Discretionary",
+    "averageProfit": 1.191353383458647
+  },
+  {
+    "sector": "Information Technology",
+    "averageProfit": 1.911450381679389
+  },
+  {
+    "sector": "Telecommunication Services",
+    "averageProfit": 2.6629032258064513
+  },
+  {
+    "sector": "Consumer Staples",
+    "averageProfit": 1.3951724137931034
+  },
+  {
+    "sector": "Health Care",
+    "averageProfit": 1.8465909090909092
+  },
+  {
+    "sector": "Materials",
+    "averageProfit": 0.6264550264550266
+  },
+  {
+    "sector": "Utilities",
+    "averageProfit": 0.5853211009174312
+  },
+  {
+    "sector": "",
+    "averageProfit": 0.46956521739130436
+  }
+]

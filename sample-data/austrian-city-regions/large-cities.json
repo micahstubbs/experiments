@@ -1,0 +1,247 @@
+[
+  {
+    "city": "Wien",
+    "lat": 48.20817,
+    "lon": 16.37382,
+    "year": "1971",
+    "population": 2093398
+  },
+  {
+    "city": "Graz",
+    "lat": 47.07071,
+    "lon": 15.4395,
+    "year": "1971",
+    "population": 391770
+  },
+  {
+    "city": "Linz",
+    "lat": 48.30694,
+    "lon": 14.28583,
+    "year": "1971",
+    "population": 382049
+  },
+  {
+    "city": "Salzburg",
+    "lat": 47.80949,
+    "lon": 13.05501,
+    "year": "1971",
+    "population": 239008
+  },
+  {
+    "city": "Innsbruck",
+    "lat": 47.26921,
+    "lon": 11.4041,
+    "year": "1971",
+    "population": 210912
+  },
+  {
+    "city": "Bregenz",
+    "lat": 47.50075,
+    "lon": 9.74231,
+    "year": "1971",
+    "population": 124818
+  },
+  {
+    "city": "Klagenfurt",
+    "lat": 46.63646,
+    "lon": 14.31222,
+    "year": "1971",
+    "population": 125236
+  },
+  {
+    "city": "Wien",
+    "lat": 48.20817,
+    "lon": 16.37382,
+    "year": "1981",
+    "population": 2026546
+  },
+  {
+    "city": "Graz",
+    "lat": 47.07071,
+    "lon": 15.4395,
+    "year": "1981",
+    "population": 394911
+  },
+  {
+    "city": "Linz",
+    "lat": 48.30694,
+    "lon": 14.28583,
+    "year": "1981",
+    "population": 400144
+  },
+  {
+    "city": "Salzburg",
+    "lat": 47.80949,
+    "lon": 13.05501,
+    "year": "1981",
+    "population": 264946
+  },
+  {
+    "city": "Innsbruck",
+    "lat": 47.26921,
+    "lon": 11.4041,
+    "year": "1981",
+    "population": 228046
+  },
+  {
+    "city": "Bregenz",
+    "lat": 47.50075,
+    "lon": 9.74231,
+    "year": "1981",
+    "population": 139025
+  },
+  {
+    "city": "Klagenfurt",
+    "lat": 46.63646,
+    "lon": 14.31222,
+    "year": "1981",
+    "population": 133135
+  },
+  {
+    "city": "Wien",
+    "lat": 48.20817,
+    "lon": 16.37382,
+    "year": "1991",
+    "population": 2078116
+  },
+  {
+    "city": "Graz",
+    "lat": 47.07071,
+    "lon": 15.4395,
+    "year": "1991",
+    "population": 403984
+  },
+  {
+    "city": "Linz",
+    "lat": 48.30694,
+    "lon": 14.28583,
+    "year": "1991",
+    "population": 426138
+  },
+  {
+    "city": "Salzburg",
+    "lat": 47.80949,
+    "lon": 13.05501,
+    "year": "1991",
+    "population": 292498
+  },
+  {
+    "city": "Innsbruck",
+    "lat": 47.26921,
+    "lon": 11.4041,
+    "year": "1991",
+    "population": 241454
+  },
+  {
+    "city": "Bregenz",
+    "lat": 47.50075,
+    "lon": 9.74231,
+    "year": "1991",
+    "population": 150529
+  },
+  {
+    "city": "Klagenfurt",
+    "lat": 46.63646,
+    "lon": 14.31222,
+    "year": "1991",
+    "population": 138891
+  },
+  {
+    "city": "Wien",
+    "lat": 48.20817,
+    "lon": 16.37382,
+    "year": "2001",
+    "population": 2136326
+  },
+  {
+    "city": "Graz",
+    "lat": 47.07071,
+    "lon": 15.4395,
+    "year": "2001",
+    "population": 409892
+  },
+  {
+    "city": "Linz",
+    "lat": 48.30694,
+    "lon": 14.28583,
+    "year": "2001",
+    "population": 427516
+  },
+  {
+    "city": "Salzburg",
+    "lat": 47.80949,
+    "lon": 13.05501,
+    "year": "2001",
+    "population": 310093
+  },
+  {
+    "city": "Innsbruck",
+    "lat": 47.26921,
+    "lon": 11.4041,
+    "year": "2001",
+    "population": 246398
+  },
+  {
+    "city": "Bregenz",
+    "lat": 47.50075,
+    "lon": 9.74231,
+    "year": "2001",
+    "population": 158024
+  },
+  {
+    "city": "Klagenfurt",
+    "lat": 46.63646,
+    "lon": 14.31222,
+    "year": "2001",
+    "population": 143163
+  },
+  {
+    "city": "Wien",
+    "lat": 48.20817,
+    "lon": 16.37382,
+    "year": "2009",
+    "population": 2319837
+  },
+  {
+    "city": "Graz",
+    "lat": 47.07071,
+    "lon": 15.4395,
+    "year": "2009",
+    "population": 450601
+  },
+  {
+    "city": "Linz",
+    "lat": 48.30694,
+    "lon": 14.28583,
+    "year": "2009",
+    "population": 444769
+  },
+  {
+    "city": "Salzburg",
+    "lat": 47.80949,
+    "lon": 13.05501,
+    "year": "2009",
+    "population": 323023
+  },
+  {
+    "city": "Innsbruck",
+    "lat": 47.26921,
+    "lon": 11.4041,
+    "year": "2009",
+    "population": 258326
+  },
+  {
+    "city": "Bregenz",
+    "lat": 47.50075,
+    "lon": 9.74231,
+    "year": "2009",
+    "population": 165651
+  },
+  {
+    "city": "Klagenfurt",
+    "lat": 46.63646,
+    "lon": 14.31222,
+    "year": "2009",
+    "population": 148663
+  }
+]

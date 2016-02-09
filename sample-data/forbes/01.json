@@ -1,0 +1,332 @@
+[
+  {
+    "sector": "Financials",
+    "continent": "Asia",
+    "averageRank": 1120.443579766537
+  },
+  {
+    "sector": "Financials",
+    "continent": "North America",
+    "averageRank": 884.8592592592593
+  },
+  {
+    "sector": "Financials",
+    "continent": "Europe",
+    "averageRank": 888.0827586206897
+  },
+  { 
+    "sector": "Financials",
+    "continent": "South America",
+    "averageRank": 945.8666666666667
+  },
+  {
+    "sector": "Financials",
+    "continent": "Australia",
+    "averageRank": 797.1875
+  },
+  {
+    "sector": "Financials",
+    "continent": "Africa",
+    "averageRank": 1382.6153846153845
+  },
+  {
+    "sector": "Energy",
+    "continent": "Asia",
+    "averageRank": 699.1818181818181
+  },
+  {
+    "sector": "Energy",
+    "continent": "North America",
+    "averageRank": 876.9122807017544
+  },
+  {
+    "sector": "Energy",
+    "continent": "Europe",
+    "averageRank": 838.36
+  },
+  {
+    "sector": "Energy",
+    "continent": "South America",
+    "averageRank": 79
+  },
+  {
+    "sector": "Energy",
+    "continent": "Australia",
+    "averageRank": 958.3333333333334
+  },
+  {
+    "sector": "Energy",
+    "continent": "Africa",
+    "averageRank": 1278
+  },
+  {
+    "sector": "Industrials",
+    "continent": "Asia",
+    "averageRank": 1045.0877192982457
+  },
+  {
+    "sector": "Industrials",
+    "continent": "North America",
+    "averageRank": 834.8709677419355
+  },
+  {
+    "sector": "Industrials",
+    "continent": "Europe",
+    "averageRank": 1015.12
+  },
+  {
+    "sector": "Industrials",
+    "continent": "South America",
+    "averageRank": 1284.8333333333333
+  },
+  {
+    "sector": "Industrials",
+    "continent": "Australia",
+    "averageRank": 1506.5
+  },
+  {
+    "sector": "Industrials",
+    "continent": "Africa",
+    "averageRank": 1377.6666666666667
+  },
+  {
+    "sector": "Consumer Discretionary",
+    "continent": "Asia",
+    "averageRank": 1025.725
+  },
+  {
+    "sector": "Consumer Discretionary",
+    "continent": "North America",
+    "averageRank": 1015.728813559322
+  },
+  {
+    "sector": "Consumer Discretionary",
+    "continent": "Europe",
+    "averageRank": 967.0322580645161
+  },
+  {
+    "sector": "Consumer Discretionary",
+    "continent": "South America",
+    "averageRank": 812.5
+  },
+  {
+    "sector": "Consumer Discretionary",
+    "continent": "Australia",
+    "averageRank": 1228
+  },
+  {
+    "sector": "Consumer Discretionary",
+    "continent": "Africa",
+    "averageRank": 764.5
+  },
+  {
+    "sector": "Information Technology",
+    "continent": "Asia",
+    "averageRank": 1108.2745098039215
+  },
+  {
+    "sector": "Information Technology",
+    "continent": "North America",
+    "averageRank": 1034.6896551724137
+  },
+  {
+    "sector": "Information Technology",
+    "continent": "Europe",
+    "averageRank": 1101.2272727272727
+  },
+  {
+    "sector": "Information Technology",
+    "continent": "South America",
+    "averageRank": null
+  },
+  {
+    "sector": "Information Technology",
+    "continent": "Australia",
+    "averageRank": null
+  },
+  {
+    "sector": "Information Technology",
+    "continent": "Africa",
+    "averageRank": null
+  },
+  {
+    "sector": "Telecommunication Services",
+    "continent": "Asia",
+    "averageRank": 785.6428571428571
+  },
+  {
+    "sector": "Telecommunication Services",
+    "continent": "North America",
+    "averageRank": 790.4545454545455
+  },
+  {
+    "sector": "Telecommunication Services",
+    "continent": "Europe",
+    "averageRank": 735.2
+  },
+  {
+    "sector": "Telecommunication Services",
+    "continent": "South America",
+    "averageRank": 872
+  },
+  {
+    "sector": "Telecommunication Services",
+    "continent": "Australia",
+    "averageRank": 225
+  },
+  {
+    "sector": "Telecommunication Services",
+    "continent": "Africa",
+    "averageRank": 378
+  },
+  {
+    "sector": "Consumer Staples",
+    "continent": "Asia",
+    "averageRank": 1279.825
+  },
+  {
+    "sector": "Consumer Staples",
+    "continent": "North America",
+    "averageRank": 930.1896551724138
+  },
+  {
+    "sector": "Consumer Staples",
+    "continent": "Europe",
+    "averageRank": 800.1842105263158
+  },
+  {
+    "sector": "Consumer Staples",
+    "continent": "South America",
+    "averageRank": 880.8
+  },
+  {
+    "sector": "Consumer Staples",
+    "continent": "Australia",
+    "averageRank": 793
+  },
+  {
+    "sector": "Consumer Staples",
+    "continent": "Africa",
+    "averageRank": 1280
+  },
+  {
+    "sector": "Health Care",
+    "continent": "Asia",
+    "averageRank": 1147.3333333333333
+  },
+  {
+    "sector": "Health Care",
+    "continent": "North America",
+    "averageRank": 855.2307692307693
+  },
+  {
+    "sector": "Health Care",
+    "continent": "Europe",
+    "averageRank": 785.6315789473684
+  },
+  {
+    "sector": "Health Care",
+    "continent": "South America",
+    "averageRank": null
+  },
+  {
+    "sector": "Health Care",
+    "continent": "Australia",
+    "averageRank": 928
+  },
+  {
+    "sector": "Health Care",
+    "continent": "Africa",
+    "averageRank": 1608
+  },
+  {
+    "sector": "Materials",
+    "continent": "Asia",
+    "averageRank": 1180.6352941176472
+  },
+  {
+    "sector": "Materials",
+    "continent": "North America",
+    "averageRank": 1086.8222222222223
+  },
+  {
+    "sector": "Materials",
+    "continent": "Europe",
+    "averageRank": 977.6304347826087
+  },
+  {
+    "sector": "Materials",
+    "continent": "South America",
+    "averageRank": 1283.6666666666667
+  },
+  {
+    "sector": "Materials",
+    "continent": "Australia",
+    "averageRank": 959.2
+  },
+  {
+    "sector": "Materials",
+    "continent": "Africa",
+    "averageRank": 683.5
+  },
+  {
+    "sector": "Utilities",
+    "continent": "Asia",
+    "averageRank": 1014.5
+  },
+  {
+    "sector": "Utilities",
+    "continent": "North America",
+    "averageRank": 941.6
+  },
+  {
+    "sector": "Utilities",
+    "continent": "Europe",
+    "averageRank": 758.2222222222222
+  },
+  {
+    "sector": "Utilities",
+    "continent": "South America",
+    "averageRank": 1225.6
+  },
+  {
+    "sector": "Utilities",
+    "continent": "Australia",
+    "averageRank": 1098.5
+  },
+  {
+    "sector": "Utilities",
+    "continent": "Africa",
+    "averageRank": null
+  },
+  {
+    "sector": "",
+    "continent": "Asia",
+    "averageRank": 1586.4736842105262
+  },
+  {
+    "sector": "",
+    "continent": "North America",
+    "averageRank": 1458.9375
+  },
+  {
+    "sector": "",
+    "continent": "Europe",
+    "averageRank": 1536.625
+  },
+  {
+    "sector": "",
+    "continent": "South America",
+    "averageRank": null
+  },
+  {
+    "sector": "",
+    "continent": "Australia",
+    "averageRank": 1748
+  },
+  {
+    "sector": "",
+    "continent": "Africa",
+    "averageRank": 1751.5
+  }
+]
