@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>svg example</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+    <style>
+    </style>
+  </head>
+  <body>
+    <script>
+var data = ["A", "B", "C", "D", "E", "F", "G"];
+
+d3.select('body').append('svg');
+
+svg.append("g")
+  .append("path")
+    .attr("class", "hexagon")
+    .attr("d", )
+    .attr("transform", function(d) { return "translate(" + 50 + "," + 50 + ")"; })
+    .style("fill", "none")
+    .style("stroke", "black");
+
+
+var d3_hexbinAngles = d3.range(0, 2 * Math.PI, Math.PI / 3),
+    d3_hexbinX = function(d) { return d[0]; },
+    d3_hexbinY = function(d) { return d[1]; };
+
+function hexagon(radius) {
+  var x0 = 0, y0 = 0;
+  return d3_hexbinAngles.map(function(angle) {
+    var x1 = Math.sin(angle) * radius,
+        y1 = -Math.cos(angle) * radius,
+        dx = x1 - x0,
+        dy = y1 - y0;
+    x0 = x1, y0 = y1;
+    return [dx, dy];
+  });
+}
+
+
+    </script>
+  </body>
+</html>

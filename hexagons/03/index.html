@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>svg example</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+    <style>
+    </style>
+  </head>
+  <body>
+    <script>
+var data = ["A", "B", "C", "D", "E", "F", "G"];
+
+var height = 1000;
+var width = 1000;
+var svg = d3.select('body').append('svg')
+  .attr("height", height)
+  .attr("width", width);
+
+
+var hex1 = svg.append("g")
+  .append("path")
+    .attr("class", "hexagon")
+    .attr("d", hexagon(100,100,20))
+    //.attr("transform", function(d) { return "translate(" + 50 + "," + 50 + ")"; })
+    .style("fill", "none")
+    .style("stroke", "black");
+
+hex1.append("text")
+  .style("stroke-width", 1)
+  .text(data[0]);
+
+var hex2 = svg.append("g")
+  .append("path")
+    .attr("class", "hexagon")
+    .attr("d", hexagon(100,60,20))
+    //.attr("transform", function(d) { return "translate(" + 50 + "," + 50 + ")"; })
+    .style("fill", "none")
+    .style("stroke", "black");
+
+hex1.append("text")
+  .style("stroke-width", 1)
+  .text(data[1]);
+
+  //function hexLayout(array) {
+  //  var r = 6;
+  //  return hexagon(x,y,r);
+  //}
+
+function hexagon(x,y,r) {
+  var x1 = x;
+  var y1 = y-r;
+  var x2 = x+(Math.cos(Math.PI/6)*r);
+  var y2 = y-(Math.sin(Math.PI/6)*r);
+  var x3 = x+(Math.cos(Math.PI/6)*r);
+  var y3 = y+(Math.sin(Math.PI/6)*r);
+  var x4 = x;
+  var y4 = y+r;
+  var x5 = x-(Math.cos(Math.PI/6)*r);
+  var y5 = y+(Math.sin(Math.PI/6)*r);
+  var x6 = x-(Math.cos(Math.PI/6)*r);
+  var y6 = y-(Math.sin(Math.PI/6)*r);
+  
+  var path = "M"+x1+" "+y1+" L"+x2+" "+y2+" L"+x3+" "+y3+" L"+x4+" "+y4+" L"+x5+" "+y5+" L"+x6+" "+y6+"z";
+  return path;
+}
+
+
+    </script>
+  </body>
+</html>
