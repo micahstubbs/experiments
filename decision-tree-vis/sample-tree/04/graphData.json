@@ -1,0 +1,238 @@
+{
+  "data": {
+    "nodes": [
+      {
+        "id": 0,
+        "isLeaf": false,
+        "feature": "NumberCustomerServiceCalls",
+        "label": "All",
+        "probability": 0.954,
+        "size": 0.9199999999999999,
+        "segmentid": "NaN"
+      },
+      {
+        "id": 1,
+        "isLeaf": false,
+        "feature": "InternationalPlan",
+        "label": "<= 3",
+        "probability": 0.669,
+        "size": 0.59,
+        "segmentid": "NaN"
+      },
+      {
+        "id": 2,
+        "isLeaf": false,
+        "feature": "TotalLocalMinutes",
+        "label": "= no",
+        "probability": 0.438,
+        "size": 0.5,
+        "segmentid": "NaN"
+      },
+      {
+        "id": 3,
+        "isLeaf": false,
+        "feature": "TotalDayMinutes",
+        "label": "> 600",
+        "probability": 0.378,
+        "size": 0.21000000000000002,
+        "segmentid": "NaN"
+      },
+      {
+        "id": 4,
+        "isLeaf": false,
+        "feature": "DataPlan",
+        "label": "> 210",
+        "probability": 0.249,
+        "size": 0.13,
+        "segmentid": "NaN"
+      },
+      {
+        "id": 5,
+        "isLeaf": true,
+        "feature": "",
+        "label": "= no",
+        "probability": 0.135,
+        "size": 0.05,
+        "segmentid": 2
+      },
+      {
+        "id": 6,
+        "isLeaf": true,
+        "feature": "",
+        "label": "= yes",
+        "probability": 0.114,
+        "size": 0.08,
+        "segmentid": 5
+      },
+      {
+        "id": 7,
+        "isLeaf": true,
+        "feature": "",
+        "label": "<= 210",
+        "probability": 0.129,
+        "size": 0.08,
+        "segmentid": 3
+      },
+      {
+        "id": 8,
+        "isLeaf": true,
+        "feature": "",
+        "label": "<= 600",
+        "probability": 0.06,
+        "size": 0.29,
+        "segmentid": 9
+      },
+      {
+        "id": 9,
+        "isLeaf": false,
+        "feature": "TotalIntlMinutes",
+        "label": "= yes",
+        "probability": 0.23099999999999998,
+        "size": 0.09,
+        "segmentid": "NaN"
+      },
+      {
+        "id": 10,
+        "isLeaf": false,
+        "feature": "TotalIntlCalls",
+        "label": "<= 13",
+        "probability": 0.23099999999999998,
+        "size": 0.09,
+        "segmentid": "NaN"
+      },
+      {
+        "id": 11,
+        "isLeaf": true,
+        "feature": "",
+        "label": "<= 3",
+        "probability": 0.081,
+        "size": 0.05,
+        "segmentid": 7
+      },
+      {
+        "id": 12,
+        "isLeaf": true,
+        "feature": "",
+        "label": "> 3",
+        "probability": 0.15,
+        "size": 0.04,
+        "segmentid": 1
+      },
+      {
+        "id": 13,
+        "isLeaf": false,
+        "feature": "TotalLocalMinutes",
+        "label": "> 3",
+        "probability": 0.285,
+        "size": 0.33,
+        "segmentid": "NaN"
+      },
+      {
+        "id": 14,
+        "isLeaf": false,
+        "feature": "DataPlan",
+        "label": "> 500",
+        "probability": 0.21,
+        "size": 0.14,
+        "segmentid": "NaN"
+      },
+      {
+        "id": 15,
+        "isLeaf": true,
+        "feature": "",
+        "label": "= yes",
+        "probability": 0.12,
+        "size": 0.08,
+        "segmentid": 4
+      },
+      {
+        "id": 16,
+        "isLeaf": true,
+        "feature": "",
+        "label": "= no",
+        "probability": 0.09,
+        "size": 0.06,
+        "segmentid": 6
+      },
+      {
+        "id": 17,
+        "isLeaf": true,
+        "feature": "",
+        "label": "<= 500",
+        "probability": 0.075,
+        "size": 0.19,
+        "segmentid": 8
+      }
+    ],
+    "edges": [
+      {
+        "source": 0,
+        "target": 1
+      },
+      {
+        "source": 0,
+        "target": 13
+      },
+      {
+        "source": 1,
+        "target": 2
+      },
+      {
+        "source": 1,
+        "target": 9
+      },
+      {
+        "source": 2,
+        "target": 3
+      },
+      {
+        "source": 2,
+        "target": 8
+      },
+      {
+        "source": 3,
+        "target": 4
+      },
+      {
+        "source": 3,
+        "target": 7
+      },
+      {
+        "source": 4,
+        "target": 5
+      },
+      {
+        "source": 4,
+        "target": 6
+      },
+      {
+        "source": 9,
+        "target": 10
+      },
+      {
+        "source": 10,
+        "target": 11
+      },
+      {
+        "source": 10,
+        "target": 12
+      },
+      {
+        "source": 13,
+        "target": 14
+      },
+      {
+        "source": 13,
+        "target": 17
+      },
+      {
+        "source": 14,
+        "target": 15
+      },
+      {
+        "source": 14,
+        "target": 16
+      }
+    ]
+  }
+}

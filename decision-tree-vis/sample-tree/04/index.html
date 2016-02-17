@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+.node circle {
+  stroke-width: 1.5px;
+}
+.node {
+  font: 12px sans-serif;
+}
+.link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 1.5px;
+}
+</style>
+<body>
+<script src="//d3js.org/d3.v3.min.js"></script>
+<script>
+
+var width = 1600,
+    height = 800;
+
+var tree = d3.layout.tree()
+    .size([height, width - 320]);
+
+var diagonal = d3.svg.diagonal()
+    .projection(function(d) { return [d.y, d.x]; });
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height)
+  .append("g")
+    .attr("transform", "translate(40,0)");
+
+d3.json('data.json', function(error, data) {
+  console.log('data', data);
+  console.log('data[0]', data[0]);
+  var root = data[0];
+  update(root);
+})
+
+function update(data) {
+
+  var nodes = tree.nodes(data),
+      links = tree.links(nodes);
+
+  console.log('nodes', nodes);
+  console.log('links', links);
+
+  var nodeList = nodes.map(function(d) {
+    if (d['children']) {
+      delete d['children'];
+    }
+    if (d['parent']) {
+      delete d['parent'];
+    }
+    delete d['depth'];
+    delete d['x'];
+    delete d['y'];
+    return d;
+  })
+
+  var edgeList = links.map(function(link) {
+    var edge = {};
+    edge['source'] = link['source']['id'];
+    edge['target'] = link['target']['id'];
+    return edge;
+  })
+
+  debugger
+
+  var link = svg.selectAll("path.link")
+      .data(links)
+    .enter().append("path")
+      .attr("class", "link")
+      .attr("d", diagonal);
+
+  var node = svg.selectAll("g.node")
+      .data(nodes)
+    .enter().append("g")
+      .attr("class", "node")
+      .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; })
+
+  var color = d3.scale.linear()
+    .domain([0, 0.15])
+    .range(["white", "red"]);
+  
+  node.append("circle")
+      .attr("r", function(d) { return d.isLeaf ? 150 * d.size : 4.5; })
+      .attr("fill", function(d) { return  d.isLeaf ? color(d.probability) : "" });
+  
+  node.append("text")
+      .attr("dx", -16)
+      .attr("dy", 3)
+      .attr("text-anchor", "end")
+      .text(function(d) { return d.feature + " " + d.label; });
+
+  node.append("text")
+      .attr("dx", 32)
+      .attr("dy", 3)
+      .attr("font-weight", "bold")
+      .attr("text-anchor", "start")
+      .text(function(d) { return d.isLeaf ? "Segment "+d.segmentid + " (churn: " + d.probability*100 + "%, size: " + d.size*100 + "%)" : ""; });
+
+  d3.select(self.frameElement).style("height", height + "px");
+}
+
+
+
+
+</script>

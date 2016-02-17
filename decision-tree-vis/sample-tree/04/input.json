@@ -1,0 +1,9 @@
+{
+	"input": {
+    "type": "particleSankey",
+    "value": "size",
+    "name": "feature",
+    "height": 1000,
+    "width": 1000
+  }
+}
