@@ -1,0 +1,1 @@
+A simple implementation of fog of war using hexbinning. Mouseover the darkened region to reveal the data (or lack of data) underneath. If you mouse over a region with no data, it will reveal any hexes nearby that also don't have data underneath.
