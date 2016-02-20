@@ -32,8 +32,8 @@
     })
     console.log('fullpoints', fullpoints);
 
-    d3.range(20).forEach(function (d) {
-      d3.range(20).forEach(function (p) {
+    d3.range(10).forEach(function (d) {
+      d3.range(5).forEach(function (p) {
         fullpoints.push({x: d * 25, y: p * 25, type: "hex"})
       })
     })
@@ -43,15 +43,6 @@
 
     console.log('hexbin.hexagon(25)', hexbin.hexagon(25));
 
-    d3.select("svg").selectAll("circle")
-      .data(fullpoints.filter(function (d) {return d.type === "data"}))
-      .enter()
-      .append("circle")
-      .attr("cx", function (d) {return d.x})
-      .attr("cy", function (d) {return d.y})
-      .style("fill", "#001276")
-      .attr("r", 2);
-
     d3.select("svg").selectAll("path")
       .data(hexdata)
       .enter()
@@ -60,22 +51,10 @@
       .attr("transform", function(d) { console.log(d); return "translate(" + d.x + "," + d.y + ")"; })
       .style("fill", "#001276")
       .style("stroke", "#001276")
-      .on("mouseover", defog)
+      .style("fill-opacity", .15)
 
-    function defog(d) {
-      d3.select(this)
-        .transition()
-        .duration(1000)
-        .style("opacity", 0);
 
-      d3.selectAll("path")
-        .filter(function (p) {
-          return Math.abs(p.x - d.x) < 65 && Math.abs(p.y - d.y) < 65 && d.filter(function (d) {return d.type === "data"}).length === 0 && p.filter(function (p) {return p.type === "data"}).length === 0;
-        })
-        .transition()
-        .duration(1000)
-        .style("opacity", 0);
-    }
+
 
     </script>
 </body>
