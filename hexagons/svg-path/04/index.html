@@ -28,33 +28,43 @@ var board = svg.append("g")
 
 var hexCount = 7;
 var r = 20;
-var x = 100;
-var y = 100;
+var x0 = 100;
+var y0 = 100;
+var x;
+var y;
 var xStep = Math.cos(Math.PI/6)*r;
 var yStep = Math.sin(Math.PI/6)*r;
 
 for(var i=0; i<hexCount; i++) {
 
+  if(i === 0) {
+    x = x0;
+    y = y0;
+  }
+
   if(i === 1) { 
-    x += 2*xStep;
+    x = x0 + 2*xStep;
+    y = y0;
   }
   if(i === 2) {
-    x -= xStep;
-    y += 3*yStep;
+    x = x0 + xStep;
+    y = y0 + 3*yStep;
   }
   if(i === 3) {
-    x -= 2*xStep;
+    x = x0 - xStep;
+    y = y0 + 3*yStep;
   }
   if(i === 4) {
-    x -= xStep;
-    y -= 3*yStep;
+    x = x0 - 2*xStep;
+    y = y0;
   }
   if(i === 5) {
-    x += xStep;
-    y -= 3*yStep;
+    x = x0 - xStep;
+    y = y0 - 3*yStep;
   }
   if(i === 6) {
-    x += 2*xStep;
+    x = x0 + xStep;
+    y = y0 - 3*yStep;
   }
   
   var hex = board.append("g")
@@ -76,7 +86,7 @@ for(var i=0; i<hexCount; i++) {
       "dy": ".35em"
     })
     .style("text-anchor", "middle")
-    .text(data[i]);
+    .text(i); // data[i]
 }
 
 function hexagon(x,y,r) {

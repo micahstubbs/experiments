@@ -1,0 +1,1 @@
+this example defines positions in refernce to the center point of the 0th hex at (x0, y0)
