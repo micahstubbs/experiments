@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>tabletop + d3js example</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+    <script src="tabletop.js"></script>
+    <style>
+    </style>
+  </head>
+  <body>
+    <form>
+    <label><b>Enter a Message</b></label>
+    <input type="text" name="message" id="user_input">
+    </form>
+    
+    <input type="submit" onclick="init();"><br />
+    <label>Your input: </label>
+    <p><span id='display'></span> </p>
+
+    <div id="chart"></div>
+
+    <script>
+
+      // Extract the width and height that was computed by CSS.
+      var chartDiv = document.getElementById("chart");
+      var width = chartDiv.clientWidth;
+      var height = chartDiv.clientHeight;
+
+      // Use the extracted size to set the size of an SVG element.
+      var svg = d3.select(chartDiv).append("svg")
+        .attr("width", width)
+        .attr("height", height);
+
+      //window.onload = function() { init() };
+
+      var public_spreadsheet_url = 'https://docs.google.com/spreadsheets/d/1TBjACQtDy0YSMvq5DFLpUZ838758VmrGM6WDvZyseLI/pubhtml?gid=0&single=true';
+
+      function init() {
+        Tabletop.init( { key: public_spreadsheet_url,
+                         callback: showInfo,
+                         simpleSheet: true } )
+
+        var message_entered =  document.getElementById("user_input").value;
+        document.getElementById('display').innerHTML = message_entered;
+      }
+
+      function showInfo(data, tabletop) {
+        console.log("Successfully loaded data from the Google Sheet!");
+        console.log('data', data);
+      }
+
+    </script>
+  </body>
+</html>
