@@ -4,7 +4,7 @@ based on a bespoke felt-marker-on-graph-paper design, reproduced below.
 
 ![sketch](sketch.png)
 
-further research may lead to something that builds on these examples:
+further research may lead to an bl.ock that builds on these examples:
 
 [Pedigree Tree](http://bl.ocks.org/mbostock/2966094)
 ["Elbow" Dendrogram](http://bl.ocks.org/mbostock/2429963)
