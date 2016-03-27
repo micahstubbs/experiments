@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>hexagon placement intuition</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+    <style>
+    </style>
+  </head>
+  <body>
+    <script>
+var data = ["A", "B", "C", "D", "E", "F", "G"];
+
+var height = 240;
+var width = 460;
+var svg = d3.select('body').append('svg')
+  .attr("height", height)
+  .attr("width", width);
+
+svg.append("clipPath")
+    .attr("id", "clip")
+  .append("rect")
+    .attr("width", width)
+    .attr("height", height)
+
+var board = svg.append("g")
+  .attr("clip-path", "url(#clip)");
+
+var hexCount = 13;
+var r = 20;
+var x0 = 100;
+var y0 = 100;
+var x;
+var y;
+var xStep = Math.cos(Math.PI/6)*r;
+var yStep = Math.sin(Math.PI/6)*r;
+var c; // center
+
+for(var i=0; i<hexCount; i++) {
+
+  c = hexCenter(i, x0, y0);
+  
+  var hex = board.append("g")
+    .attr("class", "hex");
+
+  hex  
+    .append("path")
+      .attr("d", hexagon(c.x,c.y,r))
+      .style("fill", hexColor(i))
+      .style("stroke", "black");
+
+  hex
+    .append("text")
+    .style("stroke", "white")
+    .style("stroke-width", "1")
+    .style("fill", "white")
+    .style("opacity", .3)
+    .attr({
+      "x": c.x,
+      "y": c.y,
+      "dy": ".35em"
+    })
+    .style("text-anchor", "middle")
+    .text(i); // data[i]
+}
+
+function hexagon(x,y,r) {
+  var x1 = x;
+  var y1 = y-r;
+  var x2 = x+(Math.cos(Math.PI/6)*r);
+  var y2 = y-(Math.sin(Math.PI/6)*r);
+  var x3 = x+(Math.cos(Math.PI/6)*r);
+  var y3 = y+(Math.sin(Math.PI/6)*r);
+  var x4 = x;
+  var y4 = y+r;
+  var x5 = x-(Math.cos(Math.PI/6)*r);
+  var y5 = y+(Math.sin(Math.PI/6)*r);
+  var x6 = x-(Math.cos(Math.PI/6)*r);
+  var y6 = y-(Math.sin(Math.PI/6)*r);
+  
+  var path = "M"+x1+" "+y1+" L"+x2+" "+y2+" L"+x3+" "+y3+" L"+x4+" "+y4+" L"+x5+" "+y5+" L"+x6+" "+y6+"z";
+  return path;
+}
+
+function hexCenter(i, x0, y0) {
+  if(i === 0) {
+    x = x0;
+    y = y0;
+  }
+  if(i === 1) { 
+    x = x0 + 2*xStep;
+    y = y0;
+  }
+  if(i === 2) {
+    x = x0 + xStep;
+    y = y0 + 3*yStep;
+  }
+  if(i === 3) {
+    x = x0 - xStep;
+    y = y0 + 3*yStep;
+  }
+  if(i === 4) {
+    x = x0 - 2*xStep;
+    y = y0;
+  }
+  if(i === 5) {
+    x = x0 - xStep;
+    y = y0 - 3*yStep;
+  }
+  if(i === 6) {
+    x = x0 + xStep;
+    y = y0 - 3*yStep;
+  }
+  if(i === 7) {
+    x = x0 + 3*xStep;
+    y = y0 - 3*yStep;
+  } 
+  if(i === 8) {
+    x = x0 + 4*xStep;
+    y = y0;
+  }
+  if(i === 9) {
+    x = x0 + 3*xStep;
+    y = y0 + 3*yStep;
+  }
+  if(i === 10) {
+    x = x0 + 2*xStep;
+    y = y0 + 6*yStep;
+  }
+  if(i === 11) {
+    x = x0;
+    y = y0 + 6*yStep;
+  }     
+  return {
+    'x': x,
+    'y': y
+  }
+}
+
+function hexColor(i) {
+  if(i === 0) { return "#006d2c" }
+  if(i <   7) { return "#2ca25f" } 
+  if(i >=  7) { return "#66c2a4" }
+}
+
+    </script>
+  </body>
+</html>
