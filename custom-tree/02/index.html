@@ -33,6 +33,24 @@ var background = svg.append('rect')
   .style({
     'fill': 'none',
     'stroke': 'gray',
+    'stroke-width': '0px'
+  });
+
+var fillRightRect = svg.append('rect')
+  .classed('arbitrary', true)
+  .attr({
+    'x': 330,
+    'y': 0,
+    'rx': 10,
+    'ry': 10,
+    'height': height,
+    'width': width - 330
+  })
+  .style({
+    'fill': 'turquoise',
+    'fill-opacity': 0.2,
+    'stroke': 'none',
+    'stroke-opacity': 0.2,
     'stroke-width': '1px'
   });
 
@@ -255,12 +273,12 @@ d3.selectAll('.nodes')
   .attr('dx', function(d) {
     if(d.id === 0) return '-1.2em';
     if(d.id === 7) return  '-.25em';
-    if(d.id === 8) return  '.55em';
+    if(d.id === 8) return  '.35em';
     return               '.7em';
   })
   .attr('dy', function(d) {
-    if(d.id === 7) return '-.55em';
-    if(d.id === 8) return  '-.55em';
+    if(d.id === 7) return '-.5em';
+    if(d.id === 8) return  '-.35em';
     return                '.35em';
   })
   .style('stroke', 'none')
