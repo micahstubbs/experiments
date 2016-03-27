@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Custom Tree Layout</title>
+    <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <style>
+    </style>
+  </head>
+  <body>
+    <script>
+
+// Extract the width and height that was computed by CSS.
+var chartDiv = document.getElementById("vis");
+var width = 960;
+var height = 1440;
+var nodeRadius = 6;
+var linkWidth = '3px';
+
+// Use the extracted size to set the size of an SVG element.
+var svg = d3.select('body').append("svg")
+  .attr("width", width)
+  .attr("height", height);
+
+var background = svg.append('rect')
+  .classed('background', true)
+  .attr({
+    'x': 0,
+    'y': 0,
+    'rx': 10,
+    'ry': 10,
+    'height': height,
+    'width': width
+  })
+  .style({
+    'fill': '#EEF1F6',
+    'stroke': 'gray',
+    'stroke-width': '0px'
+  });
+
+var nodes = [
+  {
+    'id': 0,
+    'x': 75,
+    'y': 75
+  },
+  {
+    'id': 1,
+    'x': 885,
+    'y': 72
+  },
+  {
+    'id': 2,
+    'x': 885,
+    'y': 247
+  },
+  {
+    'id': 3,
+    'x': 885,
+    'y': 840
+  },
+  {
+    'id': 4,
+    'x': 885,
+    'y': 1014
+  },
+  {
+    'id': 5,
+    'x': 885,
+    'y': 1189
+  },
+  {
+    'id': 6,
+    'x': 885,
+    'y': 1363
+  },
+  {
+    'id': 7,
+    'hidden': true,
+    'x': 308,
+    'y': 75
+  },
+  {
+    'id': 8,
+    'hidden': true,
+    'x': 308,
+    'y': 247
+  }
+];
+
+/////////////////////////////////////////////////////////////////////////////////
+///// draw the hidden nodes /////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+
+// do this first, so that our hiddden nodes
+// ghost circles appear below our link paths
+d3.select('svg').selectAll('.hiddenNodes')
+  .data(nodes.filter(function(d) { 
+    return d.hidden === true;
+  }))
+  .enter()
+  .append('g')
+  .classed('hiddenNodes', true)
+  .classed('nodes', true)
+    .append('circle')
+    .attr('r', nodeRadius)
+    .attr('cx', function(d) {
+      return d.x;
+    })
+    .attr('cy', function(d) {
+      return d.y;
+    })
+    .style({
+      'fill': '#CFD7E6',
+      'fill-opacity': .8
+    });
+
+
+/////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+     
+var links = [
+  {
+    'source': 7,
+    'target': 8,
+    'color': '#7F8DE1',
+    'id': 0
+  },
+  {
+    'source': 8,
+    'target': 2,
+    'color': '#7F8DE1',
+    'id': 1
+  },
+  {
+    'source': 0,
+    'target': 1,
+    'color': '#4BC076',
+    'id': 2
+  },
+  {
+    'source': 0,
+    'target': 3,
+    'color': '#F88962',
+    'id': 3
+  },
+  {
+    'source': 0,
+    'target': 4,
+    'color': '#F88962',
+    'id': 4
+  },
+  {
+    'source': 0,
+    'target': 5,
+    'color': '#F88962',
+    'id': 5
+  },
+  {
+    'source': 0,
+    'target': 6,
+    'color': '#EF7EAD',
+    'id': 6
+  }
+]
+
+/////////////////////////////////////////////////////////////////////////////////
+////// draw the links ///////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+
+d3.select('svg').selectAll('.links')
+  .data(links)
+  .enter()
+  .append('g')
+  .classed('links', true)
+    .append('path')
+    .attr('d', function(d) {
+      return generateLinkPath(d);
+    })
+    .style('stroke', function(d) {
+      return d.color;
+    })
+    .style('stroke-width', linkWidth)
+    .style({
+      'fill': 'none',
+      'stroke-linecap': 'square'  
+    })  
+
+function generateLinkPath(link) {
+
+  // a d3 path generator to draw a nice
+  // bezier curve
+  var bezierCurve = d3.svg.line()
+  .x(function(d) { return d[0]; })
+  .y(function(d) { return d[1]; })
+  .interpolate('basis');
+
+  var sourceId = link['source'];
+  var targetId = link['target'];
+
+  var xS = nodes[sourceId]['x'];
+  var yS = nodes[sourceId]['y'];
+  var xT = nodes[targetId]['x'];
+  var yT = nodes[targetId]['y'];
+
+  switch (link.id) {
+    case 6:
+      return bezierCurve([
+        [xS, yS],
+        [Math.abs(xS-.6*xT), Math.abs(yS-yT)],
+        [xT, yT]
+      ]);
+
+    default:
+      var path = 'M ' + xS + ' ' + yS + ' ' + xT + ' ' + yT;
+      return path;
+  }
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+///// draw the nodes ////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+
+// do this second, so that our node circles appear
+// above our link paths
+d3.select('svg').selectAll('.visibleNodes')
+  .data(nodes.filter(function(d) { 
+    return d.hidden == undefined;
+  }))
+  .enter()
+  .append('g')
+  .classed('visibleNodes', true)
+  .classed('nodes', true)
+    .append('circle')
+    .attr('r', nodeRadius)
+    .attr('cx', function(d) {
+      return d.x;
+    })
+    .attr('cy', function(d) {
+      return d.y;
+    })
+    .style({'fill': '#00396B'});
+
+/////////////////////////////////////////////////////////////////////////////////
+// draw the labels for the nodes ////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+
+d3.selectAll('.nodes')
+  .append('text')
+    .attr('x', function(d) {
+      return d.x;
+    })
+    .attr('y', function(d) {
+      return d.y;
+    })
+  .attr('dx', function(d) {
+    if(d.id === 0) return '-1.2em';
+    if(d.id === 7) return  '-.25em';
+    if(d.id === 8) return  '.35em';
+    return               '.7em';
+  })
+  .attr('dy', function(d) {
+    if(d.id === 7) return '-.5em';
+    if(d.id === 8) return  '-.35em';
+    return                '.35em';
+  })
+  .style('stroke', 'none')
+  .style('fill', '#A7B8D1')
+  .text(function(d) { return d.id }); 
+
+    </script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
