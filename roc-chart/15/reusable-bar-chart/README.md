@@ -1,0 +1,1 @@
+Just a basic bar chart using the reusable chart format.  Should think about making this useable with d3 histogram.

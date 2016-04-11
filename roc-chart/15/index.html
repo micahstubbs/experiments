@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<head>
+  <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300,100,900|Open+Sans:400,300,700,600,800' rel='stylesheet' type='text/css'>
+</head>
+<style>
+
+body { 
+  font-size: 12px; 
+  font-family: 'Open Sans';
+}
+
+#container {
+  overflow: hidden; /* will contain if #first is longer than #second */
+}
+
+#roc {
+  float:left; /* add this */
+}
+
+#bar {
+  overflow: hidden; /* if you don't want #second to wrap below #first */
+}
+
+path { 
+    stroke-width: 3;
+    fill: none;
+    opacity: .7;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: grey;
+    stroke-width: 2;
+    shape-rendering: crispEdges;
+    opacity: 1;
+}
+
+.d3-tip {
+    font-family: Verdana;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 8px;
+    color: #fff; 
+    z-index: 5070;
+  }
+
+  #bar {
+  font: 10px sans-serif;
+  }
+      
+  .bar rect {
+  fill: steelblue;
+  shape-rendering: crispEdges;
+  }
+      
+  .bar text {
+  fill: #fff;
+  }
+      
+  .axis path, .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+  }
+
+</style>
+<body>
+  <div id='container'>
+    <div id="roc"> </div>
+    <div id="bar"> </div>
+  </div>
+<script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="crossfilter.min.js"></script>
+<script src="rocChart.js"></script>
+<script src="barChart.js"></script>
+<script>
+
+var margin = {top: 30, right: 61, bottom: 70, left: 61}, 
+    width = 470 - margin.left - margin.right,
+    height = 450 - margin.top - margin.bottom;
+
+// fpr for "false positive rate"
+// tpr for "true positive rate"
+
+var rocChartOptions = {
+  margin: margin,
+  width: width,
+  height: height,
+  interpolationMode: "basis",
+  fpr: "X",
+  tprVariables: [
+    {
+      name: "BPC",
+      label: "Break Points"
+    },
+    {
+      name: "WNR",
+      label: "Winners"
+    },
+    {
+      name: "FSP",
+      label: "First Serve %",
+    },
+    {
+      name: "NPW",
+      label: "Net Points Won"
+    }
+  ], 
+  animate: true,
+  smooth: true
+}
+
+var barChartOptions = {
+  margin: margin,
+  width: width,
+  height: height
+}
+
+d3.json("data.json", function(error, data) {
+  // load and organise data
+
+  // create crossfilter
+  var cf = crossfilter(data);
+
+  // create dimensions
+  cf.breakPoint = cf.dimension(function (d) { return d.BPC; });
+  cf.winner = cf.dimension(function (d) { return d.WNR; });
+  cf.firstServe = cf.dimension(function (d) { return d.FSP; });
+  cf.netPointsWon = cf.dimension(function (d) { return d.NPW; });
+
+  console.log('cf.winner.top(3)', cf.winner.top(3));
+
+  console.log('data', data);
+  rocChart("#roc", data, rocChartOptions);
+  barChart("#bar", cf.winner.top(1), barChartOptions);
+})
+
+</script>
+</body>

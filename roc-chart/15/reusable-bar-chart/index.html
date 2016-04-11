@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<meta charset="utf-8">  
+  <head>
+    <script src="http://d3js.org/d3.v3.js"></script>
+    <script src="bar-chart.js"></script>
+    <style>
+      
+      body {
+      font: 10px sans-serif;
+      }
+      
+      .bar rect {
+      fill: steelblue;
+      shape-rendering: crispEdges;
+      }
+      
+      .bar text {
+      fill: #fff;
+      }
+      
+      .axis path, .axis line {
+      fill: none;
+      stroke: #000;
+      shape-rendering: crispEdges;
+      }
+
+    </style>
+  </head>
+  <body>
+    <script type="text/javascript">
+      var data = d3.range(20).map(function(d){return {"x":d,"y":Math.floor(Math.random() * 100)}}),
+      bc = barChart();
+      
+      d3.select("body").datum(data)
+      .call(bc);
+    </script>    
+  </body>

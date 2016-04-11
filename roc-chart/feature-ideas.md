@@ -12,3 +12,4 @@ consider
 
 + add a "how to read an ROC chart" over marking the perfect point at the top left and the "better" and "worse" sides of the random guess line
 
++ add linked bar chart that updated with horizontal (x) mouse movement
