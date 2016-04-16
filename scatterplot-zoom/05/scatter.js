@@ -123,7 +123,7 @@ d3.json('data.json', function(data) {
       .attr('x2', 0)
       .attr('y2', height);
 
-  objects.selectAll('.dot')
+  var dots = objects.selectAll('.dot')
       .data(data)
     .enter().append('circle')
       .classed('dot', true)
@@ -134,6 +134,8 @@ d3.json('data.json', function(data) {
       .style('fill', function (d) { return color(d[colorCat]); })
       .on('mouseover', tip.show)
       .on('mouseout', tip.hide);
+
+  dots.classed('aggregate', true);
 
   var legend = svg.selectAll('.legend')
       .data(color.domain())
@@ -153,8 +155,6 @@ d3.json('data.json', function(data) {
       .attr('dy', '.35em')
       .text(function (d) { return d; });
 
-  d3.select('input').on('click', change);
-
   var testRecord = data
     .filter(function (d) {
       return d.Potassium === 190 && d.Calories === 90;
@@ -163,7 +163,7 @@ d3.json('data.json', function(data) {
   var detailData = testRecord[0].values;
   console.log('testRecord', testRecord)
   console.log('detailData', detailData);
-
+/*
   function change() {
     xCat = 'Calories';
     xMax = d3.max(data, function (d) { return d[xCat]; });
@@ -187,7 +187,7 @@ d3.json('data.json', function(data) {
       .duration(1000)
       .attr('transform', transform);
   }
-
+*/
   function zoom() {
     svg.select('.x.axis').call(xAxis);
     svg.select('.y.axis').call(yAxis);
@@ -200,26 +200,43 @@ d3.json('data.json', function(data) {
 
     console.log('zoomLevel', zoomLevel);
     if (zoomLevel > zoomThreshold) {
-      objects.selectAll('.detailDot')
-        .data(detailData)
-      .enter().append('circle')
-        .classed('dot', true)
-        .classed('detailDot', true)
-        .attr('r', function (d) { 
-          return 6 * Math.sqrt(d[rCat] / Math.PI); 
-        })
-        .attr('transform', transform)
-        .style('fill', 'none')
-        .style('stroke', function (d) { return color(d[colorCat]); })
-        .style('stroke-width', function (d) { 
-          return 3 * Math.sqrt(d[rCat] / Math.PI); 
-        })
-        .on('mouseover', tip.show)
-        .on('mouseout', tip.hide);
+      if (d3.selectAll('.detailDot')[0].length === 0) {
+        var detailDots = objects.selectAll('.detailDot')
+          .data(detailData)
+        .enter().append('circle')
+          .classed('dot', true)
+          .classed('detailDot', true)
+          .attr('r', function (d) { 
+            return 6 * Math.sqrt(d[rCat] / Math.PI); 
+          })
+          .attr('transform', translateToAggregate)
+          .style('fill', 'none')
+          .style('stroke-opacity', 0)
+          .style('stroke', function (d) { return color(d[colorCat]); })
+          .style('stroke-width', function (d) { 
+            return 3 * Math.sqrt(d[rCat] / Math.PI); 
+          })
+          
+        detailDots.transition()
+            .duration(2000)
+            .attr('transform', transform)
+            .style('stroke-opacity', 1);
+         
+        d3.selectAll('.detailDot') 
+          .on('mouseover', tip.show)
+          .on('mouseout', tip.hide);
+      }
     }
 
     if (zoomLevel < zoomThreshold) {
-      d3.selectAll('.detailDot').remove();
+      if (d3.selectAll('.detailDot')[0].length > 0) {
+        d3.selectAll('.detailDot').transition()
+          .duration(2000)
+          .attr('transform', translateToAggregate)
+          .style('stroke-opacity', 0)
+          .remove();
+      }
+      
     }
   }
 
@@ -229,5 +246,19 @@ d3.json('data.json', function(data) {
 
   function transform(d) {
     return 'translate(' + x(d[xCat]) + ',' + y(d[yCat]) + ')';
+  }
+
+  function translateToAggregate (d) {
+    return 'translate(' + 
+      (x(testRecord[0][xCat])) + ',' +
+      (y(testRecord[0][yCat])) +
+    ')';
+  }
+
+  function translateFromAggregateToDetail (d) {
+    return 'translate(' + 
+      (x(d[xCat]) - x(testRecord[0][xCat])) + ',' +
+      (y(d[yCat]) + y(testRecord[0][yCat])) +
+    ')';
   }
 });

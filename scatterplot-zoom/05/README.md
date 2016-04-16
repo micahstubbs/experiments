@@ -1,13 +1,7 @@
 This iteration 
 
-+ convert data to json
-+ update chart to use json data
-+ increase chart size
-+ revert impossible zoom
-+ identify the  threshold zoom level
-+ add nested data for one point
-+ above zoom level threshold show nested data
-+ below zoom level threshold hide nested data
++ transition detail points from parent aggreate point position
+  to actual position
 
 ---
 Original README.md
