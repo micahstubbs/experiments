@@ -1,0 +1,817 @@
+
+
+<!DOCTYPE html>
+<!--[if lte IE 7]><html class="ie7 lte8 lte9" lang="en-au"><![endif]-->
+<!--[if IE 8]><html class="ie8 lte8 lte9" lang="en-au"><![endif]-->
+<!--[if IE 9]><html class="ie9 lte9" lang="en-au"><![endif]-->
+<!--[if (gt IE 9) | (!IE)]><!-->
+<html lang="en-au">
+<!--<![endif]-->
+<head>
+
+    <!--TODO: DELETE AFTER TESTing Temp Begin CSS assets -->
+    
+    <meta http-equiv="content-language" content="en-au" />
+    <meta http-equiv="imagetoolbar" content="false" />
+    <link rel="dns-prefetch" href="//cdn.optimizely.com" />
+    <link rel="dns-prefetch" href="//static.domain.com.au" />
+    <link rel="dns-prefetch" href="//images.domain.com.au" />
+    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+    <link rel="dns-prefetch" href="//b.domainstatic.com.au" />
+    <link rel="dns-prefetch" href="//mt0.googleapis.com" />
+    <link rel="dns-prefetch" href="//mt1.googleapis.com"/>
+    <link rel="dns-prefetch" href="//assets.adobedtm.com"/>
+    <link rel="dns-prefetch" href="//s3.amazonaws.com" />
+    <title>Mobile Real Estate and Rentals App | Domain.com.au</title>
+        <meta name="description" content="Download our best mobile real estate and rentals app to find homes for sale &amp; apartments for rent in your neighborhood. Available for iOS &amp; Android devices." />
+        
+
+    <!--Server: WIN-2J6S7N268CT-->
+    <meta charset="utf-8" />
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0" />-->
+    <meta name="viewport" content="width=1020" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="apple-itunes-app" content="app-id=319908646, affiliate-data=270216&amp;ct=smartbanner_Homepage, app-argument=domain.com.au://open?AdId=2012349010">
+    
+    
+    
+    <meta http-equiv="imagetoolbar" content="false" />
+                <script type="text/javascript">window.NREUM||(NREUM={});NREUM.info = {"beacon":"bam.nr-data.net","errorBeacon":"bam.nr-data.net","licenseKey":"7cc93972a0","applicationID":"9355435","transactionName":"NAAHbEUHCkZSUEJaCg1KKG50SSlaUVpaVjURCghXZwcDUHBcWEcXDAkJXUVJKVpRWlpW","queueTime":0,"applicationTime":2,"ttGuid":"C0418BFE5376D212","agent":""}</script><script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(e,t,n){function r(n){if(!t[n]){var o=t[n]={exports:{}};e[n][0].call(o.exports,function(t){var o=e[n][1][t];return r(o||t)},o,o.exports)}return t[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({1:[function(e,t,n){function r(e,t){return function(){o(e,[(new Date).getTime()].concat(a(arguments)),null,t)}}var o=e("handle"),i=e(2),a=e(3);"undefined"==typeof window.newrelic&&(newrelic=NREUM);var u=["setPageViewName","addPageAction","setCustomAttribute","finished","addToTrace","inlineHit"],c=["addPageAction"],f="api-";i(u,function(e,t){newrelic[t]=r(f+t,"api")}),i(c,function(e,t){newrelic[t]=r(f+t)}),t.exports=newrelic,newrelic.noticeError=function(e){"string"==typeof e&&(e=new Error(e)),o("err",[e,(new Date).getTime()])}},{}],2:[function(e,t,n){function r(e,t){var n=[],r="",i=0;for(r in e)o.call(e,r)&&(n[i]=t(r,e[r]),i+=1);return n}var o=Object.prototype.hasOwnProperty;t.exports=r},{}],3:[function(e,t,n){function r(e,t,n){t||(t=0),"undefined"==typeof n&&(n=e?e.length:0);for(var r=-1,o=n-t||0,i=Array(0>o?0:o);++r<o;)i[r]=e[t+r];return i}t.exports=r},{}],ee:[function(e,t,n){function r(){}function o(e){function t(e){return e&&e instanceof r?e:e?u(e,a,i):i()}function n(n,r,o){e&&e(n,r,o);for(var i=t(o),a=l(n),u=a.length,c=0;u>c;c++)a[c].apply(i,r);var s=f[g[n]];return s&&s.push([m,n,r,i]),i}function p(e,t){w[e]=l(e).concat(t)}function l(e){return w[e]||[]}function d(e){return s[e]=s[e]||o(n)}function v(e,t){c(e,function(e,n){t=t||"feature",g[n]=t,t in f||(f[t]=[])})}var w={},g={},m={on:p,emit:n,get:d,listeners:l,context:t,buffer:v};return m}function i(){return new r}var a="nr@context",u=e("gos"),c=e(2),f={},s={},p=t.exports=o();p.backlog=f},{}],gos:[function(e,t,n){function r(e,t,n){if(o.call(e,t))return e[t];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,t,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return e[t]=r,r}var o=Object.prototype.hasOwnProperty;t.exports=r},{}],handle:[function(e,t,n){function r(e,t,n,r){o.buffer([e],r),o.emit(e,t,n)}var o=e("ee").get("handle");t.exports=r,r.ee=o},{}],id:[function(e,t,n){function r(e){var t=typeof e;return!e||"object"!==t&&"function"!==t?-1:e===window?0:a(e,i,function(){return o++})}var o=1,i="nr@id",a=e("gos");t.exports=r},{}],loader:[function(e,t,n){function r(){if(!w++){var e=v.info=NREUM.info,t=s.getElementsByTagName("script")[0];if(e&&e.licenseKey&&e.applicationID&&t){c(l,function(t,n){e[t]||(e[t]=n)});var n="https"===p.split(":")[0]||e.sslForHttp;v.proto=n?"https://":"http://",u("mark",["onload",a()],null,"api");var r=s.createElement("script");r.src=v.proto+e.agent,t.parentNode.insertBefore(r,t)}}}function o(){"complete"===s.readyState&&i()}function i(){u("mark",["domContent",a()],null,"api")}function a(){return(new Date).getTime()}var u=e("handle"),c=e(2),f=window,s=f.document;NREUM.o={ST:setTimeout,CT:clearTimeout,XHR:f.XMLHttpRequest,REQ:f.Request,EV:f.Event,PR:f.Promise,MO:f.MutationObserver},e(1);var p=""+location,l={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-918.min.js"},d=window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent),v=t.exports={offset:a(),origin:p,features:{},xhrWrappable:d};s.addEventListener?(s.addEventListener("DOMContentLoaded",i,!1),f.addEventListener("load",r,!1)):(s.attachEvent("onreadystatechange",o),f.attachEvent("onload",r)),u("mark",["firstbyte",a()],null,"api");var w=0},{}]},{},["loader"]);</script>
+    
+
+    <link rel="apple-touch-icon-precomposed" href="https://static.domain.com.au/domain/54.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://static.domain.com.au/domain/72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://static.domain.com.au/domain/114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://static.domain.com.au/domain/144.png" />
+    <link rel="shortcut icon" href="https://static.domain.com.au/domain/favicon.ico" />
+
+<script src="//static.criteo.net/js/ld/ld.js"></script>    <!-- Begin CSS assets -->
+<link type="text/css" href="/assets/css/E3388899AD8CE843C7EEFE53C672402F45B46F4AEC90366FA4DAF81C29C6FE2C-m/mvc-skin-domain-residential/asset.axd" rel="stylesheet" />
+<!-- End CSS assets -->
+
+
+    <!--[if IE]><link rel="stylesheet" href="/ore/assets/css/ie.css"><![endif]-->
+    <script>window.dataBlobs = {}</script>
+    <!-- Begin Javascript assets -->
+<script src="/assets/js/E5AB8A0D47DBA00D183DB97551B464E0FD61DFF4305D4FC2D68968E15F28EF18-m/mvc-js-bundle/asset.axd" type="text/javascript"></script>
+<script src="/assets/js/AABDBC3F1F413504633A84EE106A3C18B7A3E0E8A6C23BE6BBDE72A378DF807D-m/flowplayer-bundle/asset.axd" type="text/javascript"></script>
+<script src="//cdn.optimizely.com/js/684110296.js" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+var isRetina = window.devicePixelRatio > 1 ? true : false; var sitename = 'domain';//]]>
+</script>
+<!-- End Javascript assets -->
+
+
+
+    
+    <script  type="text/javascript">
+var titanEnabled = true;
+var sitecatEnabled = true;
+var digitalData = {
+  "page": {
+    "pageInfo": {
+      "author": "",
+      "brand": "domain",
+      "generator": "DO",
+      "pageId": "",
+      "pageName": "mobile",
+      "sysEnv": "desktop",
+      "effectiveDate": "",
+      "issueDate": "",
+      "search": null,
+      "property": null
+    },
+    "category": {
+      "primaryCategory": "Static",
+      "subCategory1": "Mobile",
+      "subCategory2": null,
+      "subCategory3": "",
+      "subCategory4": "",
+      "pageType": "Index"
+    }
+  },
+  "titan": {
+    "adSite": "DOMAIN.COM.AU",
+    "adZone": "mydomain/mobile",
+    "adKeyValues": {
+      "cat": "mydomain",
+      "cat1": "mobile",
+      "ctype": "index",
+      "medianPrice": "0K",
+      "e": "www.domain.com.au"
+    },
+    "adSlots": [],
+    "contentWidth": ""
+  },
+  "user": {
+    "profile": {
+      "profileInfo": {
+        "profileId": ""
+      }
+    },
+    "membershipType": "visitor"
+  },
+  "version": "1.0",
+  "events": []
+}</script>
+
+
+    <script src="//assets.adobedtm.com/7d5ea80d054b96730162d0905d59678c4d2bf30c/satelliteLib-056effb979f86654615e68101b9d6a79e53928b4.js">
+</script>
+
+</head>
+
+<body class="domain residential responsive-off mobile  no-leaderboard new-header">
+    
+<!-- Google Tag Manager -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3HVG4"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window, document, 'script', 'dataLayer', 'GTM-M3HVG4');</script>
+<!-- End Google Tag Manager --><script type='text/javascript'>
+    // DoubleClick DART Natural Search Tracking Code
+    if (document.referrer) {
+        var ord = Math.random() * 1000000000000;
+        document.write('<SCRIPT language="JavaScript1.1" SRC="//ad.doubleclick.net/adj/N9419.197812NSO.CODESRV/B7955303.105223786;dcadv=4320653;sz=1x2;ord=' + ord + '?"><\/SCRIPT>');
+    }
+</script>    <script type="text/javascript">
+        // <![CDATA[
+        document.body.className += " scriptable";
+        document.domain = "domain.com.au";
+        // ]]>
+    </script>
+    
+<!--
+Time: 28/04/2016 12:21:42 PM
+MachineName: WIN-2J6S7N268CT
+-->
+
+
+    
+    <div id="page-outer-wrap" class="page-outer-wrap">
+        <div id="page-inner-wrap" class="page-inner-wrap">
+
+
+
+<header class="header" role="banner">                
+
+
+
+
+<div class="navigation-wrap">
+    <nav id="main-navigation" class="main-navigation new" role="navigation">
+        <div class="inner-wrap">
+            <a href="/" title="Domain homepage" class="logo">
+                <object data="https://static.domain.com.au/content/web/residential/logo/domain-logo-white-01.svg" type="image/svg+xml" class="logo-medium" alt="Domain"></object>
+            </a>
+            <ul class="main-nav-ul">
+                <li><a href="/home?mode=buy">Buy</a></li>
+                <li><a href="/home?mode=rent">Rent</a></li>
+                <li><a href="/new-homes">New Homes</a></li>
+                <li><a href="/home?mode=sold">Sold</a></li>
+                <li><a href="http://www.commercialrealestate.com.au/">Commercial</a></li>
+                    <li><a href="http://www.domain.com.au/news/">News</a></li>
+                                    <li><a href="http://www.domain.com.au/advice/">Advice</a></li>
+                <li><a href="/real-estate-agents/">Agents</a></li>
+                <li class="dropdown">
+                    <a data-toggle="dropdown" href="javascript:;" class="domain-icon-ic_navigational_down_arrow">More</a>
+                    <ul class="dropdown-content menu">
+                        <li><a href="/home?mode=share">Share</a></li>
+                        <li><a href="/property-profile">Home Price Guide</a></li>
+                            <li><a href="/suburb-profile/">Suburb Profiles</a></li>
+                        <li><a href="/home-loans">Home Loans</a></li>
+                        <li class="menu-place-an-ad"><a href="https://advertisers.com.au/domain" rel="nofollow"><span>Place an Ad</span></a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="right">
+
+
+<ul class="list-icons">
+    <li class="dropdown">
+        <!-- UI NOTE: add class dropdown -->
+        <a href="javascript:;" title="Saved searches" data-toggle="dropdown" rel="nofollow">
+            <!-- UI NOTE: add data-toggle attribute to trigger the content -->
+            <span class="f-icon icon standalone icon-saved-search"></span>
+            <span class="hide-visually">Saved searches</span>
+        </a>
+
+        <div class="dropdown-content alt top-right-alt">
+            <!-- UI NOTE: add class alt when it's just text/tooltip -->
+            <div class="js-wrap">
+                <div class="title">
+                    <h5>Saved searches</h5>
+                </div>
+                <section>
+                    <img src="https://static.domain.com.au/content/web/residential/illustration/empty/saved-search.png" width="108" height="59" alt="Saved searches">
+                    <p>Keep your frequent searches<br> in one place.</p>
+                </section>
+                <a href="/authentications/signup?ReturnURL=%2fmobile" class="btn sml signupLink">Create an account</a>
+            </div>
+        </div>
+    </li>
+    <li class="dropdown">
+        <!-- UI NOTE: add class dropdown -->
+        <a href="javascript:;" title="Shortlist" data-toggle="dropdown" rel="nofollow">
+            <!-- UI NOTE: add data-toggle attribute to trigger the content -->
+            <span class="f-icon icon standalone icon-shortlist"></span>
+            <span class="hide-visually">Shortlist</span>
+        </a>
+
+        <div class="dropdown-content alt top-right-alt">
+            <!-- UI NOTE: add class alt when it's just text/tooltip -->
+            <div class="js-wrap">
+                <div class="title">
+                    <h5>Shortlist</h5>
+                </div>
+                <section>
+                    <img src="https://static.domain.com.au/content/web/residential/illustration/empty/shortlist.png" width="109" height="59" alt="Shortlist">
+                    <p>Keep your favourite homes<br> in one place.</p>
+                </section>
+                <a href="/authentications/signup?ReturnURL=%2fmobile" class="btn sml signupLink">Create an account</a>
+            </div>
+        </div>
+    </li>
+</ul>
+<ul class="sign-in">
+    <li><a id="loginAnchor" class="md-trigger" href="/authentications/login?ReturnURL=%2fmobile" data-ga-category="Membership" data-ga-action="Login" data-ga-label="login_link_click" rel="nofollow">Sign in</a></li>
+    <li><a href="/authentications/signup?ReturnURL=%2fmobile" data-ga-category="Membership" data-ga-action="SignUp" data-ga-label="signup_link_click" class="btn sml transparent signupLink" rel="nofollow">Sign up</a></li>
+</ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+                
+                
+
+</header>            
+
+
+
+
+
+<!-- Hero -->
+<div class="hero-wrap">
+    <img src="http://static.domain.com.au/content/web/residential/hero/mobile.jpg" class="image-hero">
+
+    <div class="inner-wrap">
+        <div class="card plain invisible">
+            <h1>Find your new home with Australia&rsquo;s highest rated real estate app*</h1>
+            <h3>4,000,000 downloads and counting!</h3>
+            <ul>
+                <li>
+                        <a class="f-icon nav-btn trackClick" href="https://itunes.apple.com/app/domain-real-estate-property/id319908646?mt=8" target="_blank" title="Download on the App Store"
+                       data-ga-pageurl="mobile_landpage" data-ga-category="app downloads" data-ga-action="click_top_badge" data-ga-label="iOS">
+                        <span class="icon domain-icon-ic_apple"></span>
+                        <span class="hide-visually">Download on the App Store</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="f-icon nav-btn trackClick" href="https://play.google.com/store/apps/details?id=com.fairfax.domain&referrer=utm_source%3DDomain%26utm_medium%3DMobile%252Bpage%26utm_term%3DTop%252Blink%26utm_campaign%3DDomain%2520Android%2520app" target="_blank" title="Download app on Play Store"
+                       data-ga-pageurl="mobile_landpage" data-ga-category="app downloads" data-ga-action="click_top_badge" data-ga-label="Android">
+                        <span class="icon domain-icon-ic_android"></span>
+                        <span class="hide-visually">Download app on Play Store</span>
+                    </a>
+                </li>
+                <li>
+                        <a class="f-icon nav-btn trackClick" href="http://www.windowsphone.com/en-au/store/app/domain-com-au/62e65b5c-88d5-df11-a844-00237de2db9e" target="_blank" title="Download on the Windows store"
+                       data-ga-pageurl="mobile_landpage" data-ga-category="app downloads" data-ga-action="click_top_badge" data-ga-label="Windows">
+                        <span class="icon domain-icon-ic_windows"></span>
+                        <span class="hide-visually">Download on the Windows store</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- //Hero -->
+<!-- Banner -->
+<section class="content-wrap awards">
+    <div class="inner-wrap">
+        <img src="http://static.domain.com.au/content/web/residential/mobile/awards.png">
+    </div>
+</section>
+<!-- //Banner -->
+<!-- Welcome -->
+<section class="content-wrap welcome">
+    <div class="inner-wrap">
+        <div class="col-12">
+            <h2>Welcome to Domain's mobile family</h2>
+            <p>Keep up with your property search wherever you go with Domain's multi-award winning real estate apps. New houses and apartments for sale or rent will be at your fingertips, making sure you'll find a property that's right for you sooner. No matter what you're looking for Domain is there for you on every device.</p>
+            <p class="feature-intro">
+                Learn more about these great mobile features:
+            </p>
+            <ul>
+                <li>
+                    <a href="http://www.domain.com.au/product/home-price-guide/"> Home Price Guide </a>
+                </li>
+                <li>
+                    <a href="http://www.domain.com.au/product/wearables/"> Wearables </a>
+                </li>
+                <li>
+                    <a href="http://www.domain.com.au/product/google-now/"> Now Cards </a>
+                </li>
+                <li>
+                    <a href="http://www.domain.com.au/product/notifications/"> Notifications </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</section>
+<!-- //Welcome -->
+<!-- Strap - iOS -->
+<section class="content-wrap mobile-devices iOS">
+    <div class="inner-wrap">
+
+        <div class="col-6">
+            <div class="card plain invisible">
+                <h2>You'll love Domain's iOS app</h2>
+                <a target="_blank" class="long-text-link" href="https://click.google-analytics.com/redirect?tid=UA-22518123-35&amp;url=https%3A%2F%2Fitunes.apple.com%2Fapp%2Fdomain-real-estate-property%2Fid319908646%3Fmt%3D8&amp;aid=au.com.fairfaxdigital.Domain&amp;idfa=%{domain}&amp;cs=Domain&amp;cm=mobile_page&amp;cn=Domain%20iPhone%20App&amp;ck=Domain%20iPhone%20App">
+                    Domain's iPhone and iPad apps are some of Australia's favourite real estate search tools. Find new homes, houses and apartments quickly using maps and GPS functionality with these award winning apps!
+                </a>
+                <ul class="testimonials fadeThrough">
+                    <li class="testimonial">
+                        <div class="avatar-round sml">
+                            <img src="/ore/assets/img/residential/mobile/user.png">
+                        </div>
+                        <div class="bouble">
+                            <span class="name">Karen Fernandez</span>
+                            <p>Easy to use and very handy when searching for properties. It retains your previous criteria&hellip;</p>
+                        </div>
+                    </li>
+                    <li class="testimonial">
+                        <div class="avatar-round sml">
+                            <img src="/ore/assets/img/residential/mobile/user.png">
+                        </div>
+                        <div class="bouble">
+                            <span class="name">21st C educator</span>
+                            <p>This is a well planned app that makes searching for property much easier&hellip;</p>
+                        </div>
+                    </li>
+                    <li class="testimonial">
+                        <div class="avatar-round sml">
+                            <img src="/ore/assets/img/residential/mobile/user.png">
+                        </div>
+                        <div class="bouble">
+                            <span class="name">Wadeomunga</span>
+                            <p>Super easy to use. iPad app even better.</p>
+                        </div>
+                    </li>
+                    <li class="testimonial">
+                        <div class="avatar-round sml">
+                            <img src="/ore/assets/img/residential/mobile/user.png">
+                        </div>
+                        <div class="bouble">
+                            <span class="name">Tasgas</span>
+                            <p>Very useful tool for organising open home inspections and browsing the market&hellip;</p>
+                        </div>
+                    </li>
+                </ul>
+                    <a href="https://itunes.apple.com/app/domain-real-estate-property/id319908646?mt=8" target="_blank" class="btn trackClick"
+                   data-ga-pageurl="mobile_landpage" data-ga-category="app downloads" data-ga-action="click_bottom_badge" data-ga-label="iOS">Download iPhone app</a>
+            </div>
+        </div>
+
+        <a target="_blank" href="https://click.google-analytics.com/redirect?tid=UA-22518123-35&amp;url=https%3A%2F%2Fitunes.apple.com%2Fapp%2Fdomain-real-estate-property%2Fid319908646%3Fmt%3D8&amp;aid=au.com.fairfaxdigital.Domain&amp;idfa=%{domain}&amp;cs=Domain&amp;cm=mobile_page&amp;cn=Domain%20iPhone%20App&amp;ck=Domain%20iPhone%20App">
+            <span class="col-6 devices">
+                <span class="device-wrap ipad">
+                    <span class="media-wrap">
+                        <img src="http://static.domain.com.au/content/web/residential/mobile/screenshot-ipad.jpg">
+                    </span>
+                    <span class="frame"></span>
+                </span>
+                <span class="device-wrap iphone">
+                    <span class="media-wrap">
+                        <img src="http://static.domain.com.au/content/web/residential/mobile/screenshot-iphone.jpg">
+                    </span>
+                    <span class="frame"></span>
+                </span>
+            </span>
+        </a>
+
+    </div>
+</section>
+<!-- //Strap - iOS -->
+<!-- Strap - android -->
+<section class="content-wrap mobile-devices android">
+    <div class="inner-wrap">
+        <a target="_blank" href="https://play.google.com/store/apps/details?id=com.fairfax.domain&amp;referrer=utm_source%3DDomain%26utm_medium%3Dmobile_page%26utm_term%3DBottom%252Blink%26utm_campaign%3DDomain%2520Android%2520app" >
+            <span class="col-6 devices">
+                <span class="device-wrap android-tablet">
+                    <span class="media-wrap">
+                        <img src="http://static.domain.com.au/content/web/residential/mobile/screenshot-android-tablet.jpg">
+                    </span>
+                    <span class="frame"></span>
+                </span>
+                <span class="device-wrap android-phone">
+                    <span class="media-wrap">
+                        <img src="http://static.domain.com.au/content/web/residential/mobile/screenshot-android-phone.jpg">
+                    </span>
+                    <span class="frame"></span>
+                </span>
+            </span>
+        </a>
+
+        <div class="col-6">
+            <div class="card plain invisible">
+                <h2>Domain Android app: Be the first to know!</h2>
+                <a target="_blank" class="long-text-link" href="https://play.google.com/store/apps/details?id=com.fairfax.domain&amp;referrer=utm_source%3DDomain%26utm_medium%3Dmobile_page%26utm_term%3DBottom%252Blink%26utm_campaign%3DDomain%2520Android%2520app">
+                    Find a property you'll love with Domain's real estate app for Android. Discover apartments and houses for sale, rent or share while you're on the go. Be the first to know about new homes with Domain notifications!
+                </a>
+                <ul class="testimonials fadeThrough">
+                    <li class="testimonial">
+                        <div class="avatar-round sml">
+                            <img src="/ore/assets/img/residential/mobile/Calvin_Lam.jpg" alt="Calvin Lam">
+                        </div>
+                        <div class="bouble">
+                            <span class="name">Calvin Lam</span>
+                            <p>Awesome. Outdone the real estate app and more importantly you listen to the users.</p>
+                        </div>
+                    </li>
+                    <li class="testimonial">
+                        <div class="avatar-round sml">
+                            <img src="/ore/assets/img/residential/mobile/hayden_bishop.jpg" alt="Photo of Hayden Bishop">
+                        </div>
+                        <div class="bouble">
+                            <span class="name">Hayden Bishop</span>
+                            <p>Brilliant app. Heaps better than the competition, well designed and great functioning app&hellip;</p>
+                        </div>
+                    </li>
+                    <li class="testimonial">
+                        <div class="avatar-round sml">
+                            <img src="/ore/assets/img/residential/mobile/anuruddha_peiris.jpg" alt="Photo of Anuruddha Peiris">
+                        </div>
+                        <div class="bouble">
+                            <span class="name">Anuruddha Peiris</span>
+                            <p>Great App. Just amazed of the information I learned about the property market&hellip;</p>
+                        </div>
+                    </li>
+                    <li class="testimonial">
+                        <div class="avatar-round sml">
+                            <img src="/ore/assets/img/residential/mobile/sam_toha.jpg" alt="Photo of Same Toha">
+                        </div>
+                        <div class="bouble">
+                            <span class="name">Same Toha</span>
+                            <p>Much Improved. This app is a lot better than it use to be. UI improvements are really well thought&hellip;</p>
+                        </div>
+                    </li>
+                </ul>
+                <a href="https://play.google.com/store/apps/details?id=com.fairfax.domain&referrer=utm_source%3DDomain%26utm_medium%3DMobile%252Bpage%26utm_term%3DBottom%252Blink%26utm_campaign%3DDomain%2520Android%2520app" target="_blank" class="btn trackClick"
+                   data-ga-pageurl="mobile_landpage" data-ga-category="app downloads" data-ga-action="click_bottom_badge" data-ga-label="Android">Download Android app</a>
+            </div>
+        </div>
+
+    </div>
+</section>
+<!-- //Strap - android -->
+<!-- Strap - other -->
+<section class="content-wrap other">
+    <div class="inner-wrap">
+
+        <div class="col-6">
+            <div class="card plain">
+                <span class="f-icon">
+                    <span class="icon domain-icon-ic_windows"></span>
+                </span>
+                <div class="inner-wrap">
+                    <h2>Windows App</h2>
+                    <p>Have a Windows phone? Domain's got your real estate needs covered.</p>
+                        <a href="http://www.windowsphone.com/en-au/store/app/domain-com-au/62e65b5c-88d5-df11-a844-00237de2db9e" target="_blank" class="trackClick"
+                       data-ga-pageurl="mobile_landpage" data-ga-category="app downloads" data-ga-action="click_bottom_badge" data-ga-label="Windows">Windows store</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div class="card plain">
+                <span class="f-icon">
+                    <span class="icon domain-icon-ic_mobile"></span>
+                </span>
+                <div class="inner-wrap">
+                    <h2>Mobile Site</h2>
+                    <p>You always have the option to search for new homes in your browser with the Domain mobile site.</p>
+                    <a href="http://m.domain.com.au" target="_blank">Mobile site</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+<!-- //Strap - other -->
+
+<!-- disclaimer -->
+<section class="content-wrap">
+    <div class="inner-wrap">
+        <p class="col-12 disclaimer">
+            *Apple, the Apple logo, iPad, and iPhone are trademarks of Apple Inc., registered in the U.S. and other countries. App Store is a service mark of Apple Inc. By highest consumer ratings for a property app on iPhone, iPad and Android as at 22/10/15
+        </p>
+    </div>
+</section>
+<!-- //disclaimer -->
+
+
+                <footer class="footer-wrap" role="contentinfo">
+                        <div class="inner-wrap">
+                            <div class="t-center txt-sml">
+                                
+                            </div>
+                        </div>
+                    <div class="primary-wrap">
+                        <div class="inner-wrap">
+                            <a href="http://www.domain.com.au/" class="logo">
+                                <img src="https://static.domain.com.au/domain/domain_logo_white_w110_h24.png" alt="Domain">
+                            </a>
+                            <div class="nav-left">
+                                <ul role="navigation">
+                                    <li><a href="https://advertisers.com.au/domain" rel="nofollow">Place an ad</a></li>
+                                    <li><a href="http://www.domain.com.au/group/">About us</a></li>
+                                    <li><a href="http://www.domain.com.au/group/contact-us/">Contact us</a></li>
+                                    <li><a href="http://www.domain.com.au/group/career/">Careers</a></li>
+                                    <li><a href="/mobile">Mobile</a></li>
+                                    <li><a href="https://support.domain.com.au">Help</a></li>
+                                </ul>
+                            </div>
+                            <div class="nav-right">
+                                <ul role="navigation">
+                                    <li><a href="/Public/AdCentre.aspx">Agent centre</a></li>
+                                    <li><a href="http://admin.domain.com.au/" class="btn alt sml f-icon"><span class="icon domain-icon-ic_locked"></span>Agent admin</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="directory-wrap">
+                        <div class="inner-wrap">
+                            <h3 class="hide-visually">Domain quick links</h3>
+                            <ul class="columns cfix" role="navigation">
+                                <li>
+                                    <h4>States</h4>
+                                    <ul>
+                                        <li><a href="/real-estate/buy/nsw/">NSW</a></li>
+                                        <li><a href="/real-estate/buy/vic/">Victoria</a></li>
+                                        <li><a href="/real-estate/buy/qld/">Queensland</a></li>
+                                        <li><a href="/real-estate/buy/wa/">Western Australia</a></li>
+                                        <li><a href="/real-estate/buy/sa/">South Australia</a></li>
+                                        <li><a href="/real-estate/buy/tas/">Tasmania</a></li>
+                                        <li><a href="/real-estate/buy/act/">ACT</a></li>
+                                        <li><a href="/real-estate/buy/nt/">Northern Territory</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <h4>Capital Cities</h4>
+                                    <ul>
+                                        <li><a href="/search/buy/state/nsw/area/sydney-city/region/sydney-region/suburb/sydney">Sydney real estate</a></li>
+                                        <li><a href="/search/buy/state/vic/area/inner-city/region/melbourne-region/suburb/melbourne">Melbourne real estate</a></li>
+                                        <li><a href="/search/buy/state/qld/area/city-and-north/region/brisbane-region/suburb/brisbane">Brisbane real estate</a></li>
+                                        <li><a href="/search/buy/state/wa/area/perth-city/region/perth-region/suburb/perth">Perth real estate</a></li>
+                                        <li><a href="/search/buy/state/sa/area/adelaide/region/adelaide/suburb/adelaide">Adelaide real estate</a></li>
+                                        <li><a href="/search/buy/state/tas/area/hobart/region/">Hobart real estate</a></li>
+                                        <li><a href="/search/buy/state/act/area/inner-north/region/canberra/suburb/canberra">Canberra real estate</a></li>
+                                        <li><a href="/search/buy/state/nt/area/darwin-area/region/northern-territory/suburb/darwin">Darwin real estate</a></li>
+                                    </ul>
+                                </li>
+                                <li class="wide">
+                                    <h4>Capital Cities &ndash; Rentals</h4>
+                                    <ul>
+                                        <li><a href="/search/rent/state/nsw/area/sydney-city/region/sydney-region/suburb/sydney">Sydney rental properties</a></li>
+                                        <li><a href="/search/rent/state/vic/area/inner-city/region/melbourne-region/suburb/melbourne">Melbourne rental properties</a></li>
+                                        <li><a href="/search/rent/state/qld/area/city-and-north/region/brisbane-region/suburb/brisbane">Brisbane rental properties</a></li>
+                                        <li><a href="/search/rent/state/wa/area/perth-city/region/perth-region/suburb/perth">Perth rental properties</a></li>
+                                        <li><a href="/search/rent/state/sa/area/adelaide/region/adelaide/suburb/adelaide">Adelaide rental properties</a></li>
+                                        <li><a href="/search/rent/state/tas/area/hobart/region/">Hobart rental properties</a></li>
+                                        <li><a href="/search/rent/state/act/area/inner-north/region/canberra/suburb/canberra">Canberra rental properties</a></li>
+                                        <li><a href="/search/rent/state/nt/area/darwin-area/region/northern-territory/suburb/darwin">Darwin rental properties</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <h4>Popular Areas</h4>
+                                    <ul>
+                                        <li><a href="/search/buy/state/nsw/area/eastern-suburbs/region/sydney-region">Eastern Suburbs Sydney</a></li>
+                                        <li><a href="/search/buy/state/nsw/area/inner-west/region/sydney-region">Inner West Sydney</a></li>
+                                        <li><a href="/search/buy/state/nsw/area/north-shore-lower/region/sydney-region">Lower North Shore</a></li>
+                                        <li><a href="/search/buy/state/vic/area/east/region/melbourne-region">East Melbourne</a></li>
+                                        <li><a href="/search/buy/state/vic/area/bayside/region/melbourne-region">Bayside Melbourne</a></li>
+                                        <li><a href="/search/buy/state/nsw/area/sydney-city/region/sydney-region">Sydney City</a></li>
+                                        <li><a href="/search/buy/state/vic/area/inner-city/region/melbourne-region">Inner City Melbourne</a></li>
+                                        <li><a href="/search/buy/state/nsw/area/north-shore-upper/region/sydney-region">Upper North Shore</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <h4>Domain</h4>
+                                    <ul>
+                                        <li><a href="http://www.domain.com.au/property-profile">Home Price Guide</a></li>
+                                        <li><a href="http://www.domain.com.au/home?mode=share">Share</a></li>
+                                        <li><a href="http://www.domain.com.au/auction-results">Auction Results</a></li>
+                                        <li><a href="http://www.domain.com.au/suburb-profile">Suburb Profiles</a></li>
+                                        <li><a href="http://www.fairfax.com.au/privacy.html" target="_blank">Privacy policy</a></li>
+                                        <li><a href="http://www.fairfax.com.au/conditions.html" target="_blank">Conditions of use</a></li>
+                                        <li><a href="/Public/SiteMap.aspx">Sitemap</a></li>
+                                        <li><a href="http://www.fairfax.com.au/tracking.html" target="_blank">Tracking &amp; targeting policy</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <h4>Fairfax Network</h4>
+                                    <ul>
+                                        <li><a href="http://www.smh.com.au" target="_blank">Sydney Morning Herald</a></li>
+                                        <li><a href="http://www.theage.com.au" target="_blank">The Age</a></li>
+                                        <li><a href="http://www.brisbanetimes.com.au" target="_blank">Brisbane Times</a></li>
+                                        <li><a href="http://www.watoday.com.au" target="_blank">WA Today</a></li>
+                                        <li><a href="http://www.canberratimes.com.au" target="_blank">Canberra Times</a></li>
+                                        <li><a href="http://www.fairfax.com.au/network-map.aspx" target="_blank">Full network</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="secondary-wrap">
+                        <div class="inner-wrap">
+                            <div class="dpg">
+                                <ul role="navigation">
+                                    <li><a href="http://business.domain.com.au/"><img src="/ore/assets/img/residential/logo/business.png" alt="commercial realestate"></a></li>
+                                    <li><a href="http://www.domainrural.com.au/"><img src="/ore/assets/img/residential/logo/rural.png" alt="domain business"></a></li>
+                                    <li><a href="http://www.commercialrealestate.com.au/"><img src="/ore/assets/img/residential/logo/cre.png" alt="domain rural"></a></li>
+                                </ul>
+                            </div>
+                            <div class="nav-left">
+                                <ul role="navigation">
+
+                                    <li>
+                                        <h4>Partners:</h4>
+                                    </li>
+                                    <li class="menu dropdown alt">
+                                        <a href="javascript:;" data-toggle="dropdown-alt">PropertyGuru</a>
+                                        <ul>
+                                            <li>
+                                                <a href="http://www.propertyguru.com.sg" target="_blank" rel="nofollow">PropertyGuru.com.sg</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://www.propertyguru.com.my" target="_blank" rel="nofollow">PropertyGuru.com.my</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://www.ddproperty.com" target="_blank" rel="nofollow">ddproperty.com</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://www.rumah.com" target="_blank" rel="nofollow">rumah.com</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://www.commercialguru.com.sg" target="_blank" rel="nofollow">commercialguru.com.sg</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="nav-right">
+                                <ul>
+                                    <li>
+                                        <a class="f-icon nav-btn" href="https://www.facebook.com/domain.com.au" title="facebook">
+                                            <span class="icon domain-icon-ic_social_facebook"></span>
+                                            <span class="hide-visually">facebook</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="f-icon nav-btn" href="https://twitter.com/Domaincomau" title="twitter">
+                                            <span class="icon domain-icon-ic_social_twitter"></span>
+                                            <span class="hide-visually">twitter</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="f-icon nav-btn" href="https://plus.google.com/+domaincomau " title="google+">
+                                            <span class="icon domain-icon-ic_social_g_plus"></span>
+                                            <span class="hide-visually">google+</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="f-icon nav-btn" href="https://www.youtube.com/user/Domaincomau" title="video">
+                                            <span class="icon domain-icon-ic_youtube"></span>
+                                            <span class="hide-visually">video</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </footer>
+        </div>
+    </div>
+    <div id="loginModalContainer" data-ga-pageurl="Login_page" class="hide-fully">
+        
+        
+        
+        <iframe id="loginIframe" width="725" height="670" frameborder="0" scrolling="no" tabindex="0"></iframe>
+    </div>
+    <div id="signUpModalContainer" data-ga-pageurl="SignUp_page" class="hide-fully">
+        
+        
+        <iframe id="signUpIframe" width="725" height="670" frameborder="0" scrolling="no" tabindex="0"></iframe>
+    </div>
+    <style>
+        iframe:focus {
+            outline:0;
+        }
+    </style>
+
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-22518123-1']);
+_gaq.push(['_setDomainName', '.domain.com.au']);
+_gaq.push(['_setAllowAnchor', true]);
+_gaq.push(['_setAllowLinker', true]);
+
+(function () {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+(function(i, s, o, g, r, a, m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q|| []).push(arguments)}, i[r].l = 1 * new Date(); a = s.createElement(o),m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)})(window, document, 'script', '//www.google-analytics.com/analytics.js', '_gaTracker');
+_gaTracker('create', 'UA-22518123-1', 'auto');
+_gaTracker('set','dimension1','new');
+_gaTracker('set','dimension2','Standard_listing_new');
+_gaTracker('set','dimension4','Not_logged_in');
+_gaTracker('set','dimension11','Map_search_off');
+_gaTracker('send', 'pageview');
+
+</script>
+    <!-- Begin Javascript assets -->
+<script src="/assets/js/BEB0DFF04657CBC427B78ED96A4355317C977EAEED3867208938BBDC2CBA3578-m/gatrackingservice/asset.axd" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+$j(document).ready(function () {
+        $j('.trackClick').GoogleEventTracking('click');});//]]>
+</script>
+<!-- End Javascript assets -->
+
+
+    <!-- START Nielsen Online SiteCensus V6.0 -->
+<!-- COPYRIGHT 2010 Nielsen Online -->
+<script type="text/javascript" src="//secure-au.imrworldwide.com/v60.js"></script>
+<script type="text/javascript">//<!--
+    var pvar = { cid: "f2", content: "domain", server: "secure-au", cookies_enabled: false };
+    if (typeof nol_t != 'undefined'){
+    var trac = nol_t(pvar);
+    }
+    if (typeof trac != 'undefined'){
+    trac.record().post();
+    }
+//--></script>
+<noscript><div>
+<img src="//secure-au.imrworldwide.com/cgi-bin/m?ci=f2&amp;cg=domain&amp;cc=0&amp;ts=noscript" width="1" height="1" alt="" />
+</div></noscript>
+<!-- END Nielsen Online SiteCensus V6.0 -->
+
+
+
+<!--Google Code for All Site Visitors
+Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. For instructions on adding this tag and more information on the above requirements, read the setup guide: google.com/ads/remarketingsetup-->
+<script type="text/javascript">
+ /* <![CDATA[ */
+var google_conversion_id = 1064277536;
+var google_conversion_language = "en";
+var google_conversion_format = "3";
+var google_conversion_color = "ffffff";
+var google_conversion_label = "xLitCKiNmgIQoKy--wM";
+var google_conversion_value = 0;
+/* ]]> */
+</script>
+<span class="hide-fully"><script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script></span>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/1064277536/?value=0&label=xLitCKiNmgIQoKy--wM&guid=ON&script=0"/>
+</div>
+</noscript>
+
+<script type="text/javascript">
+if(typeof(_satellite)!='undefined'){ _satellite.pageBottom(); }
+</script>
+    
+    <script>
+        // trigger page specific javascript
+        var pageSettings = ({
+            map: false
+        });
+    </script>
+
+    <div id="adspot-interstitial"><script>
+var titan = window.titan || {};
+titan.requestAd = titan.requestAd || [];
+titan.requestAd.push("adspot-interstitial");
+</script>
+</div>
+    <script type="application/ld+json">
+{ "@context" : "http://schema.org", "@type" : "Organization", "name" : "Domain", "url" : "http://www.domain.com.au", "sameAs" : [ "https://www.facebook.com/domain.com.au", "https://twitter.com/domaincomau", "https://plus.google.com/+domaincomau", "https://www.linkedin.com/company/domain-com-au"] }
+</script>
+
+
+</body>
+</html>

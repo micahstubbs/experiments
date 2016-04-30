@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Essentials -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes" />
+    <title>Down the line: Melbourne house prices</title>
+    <!-- Styles and fonts -->
+    <link href="main.css" type="text/css" rel="stylesheet"/>
+    <!-- Other -->
+    <script src="iframeResizer.contentWindow.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div class="app__loading app__loading--hidden">
+            <div data-loader="circle-side"></div>
+        </div>
+    </div>
+    <p class="note">
+        Suburbs not serviced by a train line and stations that share a suburb with others have not been included.
+        <span><strong>Interactive:</strong> Soren Frederiksen</span>
+        <span><strong>Source:</strong> Domain Group Chief Economist Dr Andrew Wilson</span>
+    </p>
+    <!-- Scripts -->
+    <!-- d3 3.5.15 -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.min.js" type="text/javascript"></script> -->
+    <script src="d3.min.js" type="text/javascript"></script>
+    <!-- moment.js 1.7.2 -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/1.7.2/moment.min.js" type="text/javascript"></script> -->
+    <script src="moment.min.js" type="text/javascript"></script>
+    <!-- miso dataset with dependencies 0.4.0 -->
+    <!-- <script src="https://cloud.github.com/downloads/misoproject/dataset/miso.ds.deps.min.0.4.0.js" type="text/javascript"></script> -->
+    <script src="miso.ds.deps.min.0.4.0.js" type="text/javascript"></script>
+    <script src="main.js" type="text/javascript"></script>
+</body>
+</html>

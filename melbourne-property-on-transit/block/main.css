@@ -1,0 +1,560 @@
+@charset "utf-8";
+a,
+abbr,
+acronym,
+address,
+applet,
+article,
+aside,
+audio,
+b,
+big,
+blockquote,
+canvas,
+caption,
+center,
+cite,
+code,
+dd,
+del,
+details,
+dfn,
+div,
+dl,
+dt,
+em,
+embed,
+fieldset,
+figcaption,
+figure,
+footer,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header,
+hgroup,
+i,
+iframe,
+img,
+ins,
+kbd,
+label,
+legend,
+li,
+mark,
+menu,
+nav,
+object,
+ol,
+output,
+p,
+pre,
+q,
+ruby,
+s,
+samp,
+section,
+small,
+span,
+strike,
+strong,
+sub,
+summary,
+sup,
+table,
+tbody,
+td,
+tfoot,
+th,
+thead,
+time,
+tr,
+tt,
+u,
+ul,
+var,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline
+}
+*,
+:after,
+:before {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+}
+.pez-unselectable {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none
+}
+.site-container {
+    width: 100%;
+    height: auto;
+    display: block;
+    position: relative
+}
+@font-face {
+    font-family: "SourceSansPro Black";
+    src: url(SourceSansPro-Black.otf) format("opentype")
+}
+@font-face {
+    font-family: "SourceSansPro BlackItalic";
+    src: url(SourceSansPro-BlackIt.otf) format("opentype")
+}
+@font-face {
+    font-family: "SourceSansPro Bold";
+    src: url(SourceSansPro-Bold.otf) format("opentype")
+}
+@font-face {
+    font-family: "SourceSansPro BoldItalic";
+    src: url(SourceSansPro-BoldIt.otf) format("opentype")
+}
+@font-face {
+    font-family: "SourceSansPro ExtraLight";
+    src: url(SourceSansPro-ExtraLight.otf) format("opentype")
+}
+@font-face {
+    font-family: "SourceSansPro ExtraLightItalic";
+    src: url(SourceSansPro-ExtraLightIt.otf) format("opentype")
+}
+@font-face {
+    font-family: "SourceSansPro Italic";
+    src: url(SourceSansPro-It.otf) format("opentype")
+}
+@font-face {
+    font-family: "SourceSansPro Light";
+    src: url(SourceSansPro-Light.otf) format("opentype")
+}
+@font-face {
+    font-family: "SourceSansPro LightItalic";
+    src: url(SourceSansPro-LightIt.otf) format("opentype")
+}
+@font-face {
+    font-family: "SourceSansPro Regular";
+    src: url(SourceSansPro-Regular.otf) format("opentype")
+}
+@font-face {
+    font-family: "SourceSansPro Semi";
+    src: url(SourceSansPro-Semibold.otf) format("opentype")
+}
+@font-face {
+    font-family: "SourceSansPro SemiItalic";
+    src: url(SourceSansPro-SemiboldIt.otf) format("opentype")
+}
+p,
+text {
+    font-family: "SourceSansPro Regular"
+}
+body {
+    margin: 0
+}
+#app {
+    position: relative;
+    max-width: 720px;
+    overflow: hidden
+}
+svg rect,
+svg text {
+    shape-rendering: crispEdges
+}
+.ttip {
+    padding: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 70px;
+    background: #fff;
+    box-shadow: 1px 1px 5px #c2c2c2;
+    opacity: 1;
+    transition: .25s ease opacity;
+    pointer-events: none;
+    z-index: 5
+}
+.ttip--hidden {
+    opacity: 0
+}
+.ttip__icon {
+    float: left;
+    width: 27.5%;
+    height: 100%;
+    border-radius: 100%;
+    background: #ffee8e
+}
+.ttip__icon__image {
+    height: 100%;
+    width: 100%;
+    background: url(ttip__icon.png);
+    background-size: contain;
+    background-repeat: no-repeat
+}
+.ttip__details {
+    float: left;
+    padding-left: 10px;
+    width: 72.5%
+}
+.ttip__details__name {
+    font-family: "SourceSansPro Bold"
+}
+.ttip__details__median__change {
+    float: right;
+    display: inline-block;
+    padding: 0 0 0 25px
+}
+.ttip__details__median__change--up {
+    background: url(ttip__median__up.png);
+    background-size: 20px 100%;
+    background-repeat: no-repeat
+}
+.ttip__details__median__change--down {
+    background: url(ttip__median__down.png);
+    background-size: 20px 100%;
+    background-repeat: no-repeat
+}
+.ttip__details__median__change--even {
+    background: url(ttip__median__even.png);
+    background-size: 20px 100%;
+    background-repeat: no-repeat
+}
+.legend__label {
+    font-family: "SourceSansPro Bold";
+    font-size: 14px;
+    fill: #000
+}
+.legend__change__peg__text {
+    font-family: "SourceSansPro Bold";
+    font-size: 12px
+}
+.legend__median__text {
+    font-family: "SourceSansPro Regular";
+    font-size: 12px
+}
+.top-ten-changes,
+.top-ten-medians {
+    opacity: .8;
+    pointer-events: none;
+    transition: .5s ease opacity
+}
+.top-ten-changes--hidden,
+.top-ten-medians--hidden {
+    opacity: 0
+}
+.top-ten-changes__change,
+.top-ten-medians__median {
+    font-size: 10px;
+    font-family: "SourceSansPro Black";
+    text-anchor: middle
+}
+.top-ten-changes__change circle,
+.top-ten-medians__median circle {
+    animation: pulse .7s ease alternate infinite
+}
+@keyframes pulse {
+    0% {
+        fill: #1388B3
+    }
+    100% {
+        fill: #35b4e3;
+        transform: scale(1.05)
+    }
+}
+.menu {
+    font-family: "SourceSansPro Regular", sans-serif;
+    font-size: 12px;
+    position: absolute;
+    left: 25px;
+    top: 25px;
+    text-align: right;
+    background: #fff;
+    padding: 10px;
+    transition: .5s ease box-shadow
+}
+.menu--hovered {
+    box-shadow: 1px 1px 5px #c2c2c2
+}
+.menu label {
+    padding-right: 5px
+}
+.data-menu label {
+    font-family: "SourceSansPro Bold", sans-serif
+}
+.menu button {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    margin-bottom: 3px;
+    background: #FFF;
+    border: 1px solid #9A9A9A;
+    color: #9A9A9A
+}
+.menu button:hover {
+    background: #efefef
+}
+.menu button:active {
+    background: #e0e0e0
+}
+.menu button:focus {
+    outline: 0
+}
+.menu input {
+    cursor: pointer
+}
+.zoom-menu {
+    position: relative
+}
+.zoom-menu img {
+    width: 80px;
+    height: 18px;
+    margin-bottom: 5px;
+    position: absolute;
+    left: 11.5px;
+    top: 11.5px
+}
+.station__major-label {
+    font-family: "SourceSansPro Bold";
+    font-size: 11px;
+    opacity: 1;
+    transition: .5s ease opacity
+}
+.station__major-label--hidden {
+    opacity: 0;
+    pointer-events: none
+}
+.station__median-rank {
+    opacity: 1;
+    transition: 1s ease opacity
+}
+.station__change-rank text,
+.station__median-rank text {
+    font-family: "SourceSansPro Bold";
+    text-anchor: middle;
+    font-size: 12px
+}
+.station__change-rank--hidden,
+.station__median-rank--hidden {
+    opacity: 0;
+    pointer-events: none
+}
+.note {
+    font-size: 10px;
+    color: #898989;
+    padding: 0 5px;
+    max-width: 720px
+}
+.note span {
+    float: right;
+    padding-left: 5px
+}
+.note span strong {
+    font-family: "SourceSansPro Bold"
+}
+.note:after,
+.note:before {
+    content: "";
+    display: table
+}
+.note:after {
+    clear: both
+}
+.title__main {
+    font-family: "SourceSansPro Bold";
+    font-size: 30px;
+    transition: .5s ease all
+}
+.title__sub {
+    font-family: "SourceSansPro Regular";
+    font-size: 18px;
+    transition: .5s ease all
+}
+.title--shrunk .title__main {
+    font-size: 18px
+}
+.title--shrunk .title__sub {
+    font-size: 12px
+}
+.app__loading {
+    position: absolute;
+    width: 72.5px;
+    height: 72.5px;
+    background-color: #42EA95;
+    box-shadow: 1px 1px 5px #c2c2c2;
+    text-align: center;
+    padding-top: 25px;
+    border-radius: 10px;
+    top: 45%;
+    left: 45%;
+    opacity: 1;
+    transition: 1s ease opacity;
+    pointer-events: none
+}
+.app__loading--hidden {
+    opacity: 0
+}
+[data-loader=circle-side] {
+    position: relative;
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    -webkit-animation: circle infinite .75s linear;
+    -moz-animation: circle infinite .75s linear;
+    -o-animation: circle infinite .75s linear;
+    animation: circle infinite .75s linear;
+    border: 2px solid #F2FFF8;
+    border-top-color: rgba(0, 0, 0, .2);
+    border-right-color: rgba(0, 0, 0, .2);
+    border-bottom-color: rgba(0, 0, 0, .2);
+    border-radius: 100%
+}
+@-webkit-keyframes circle {
+    0% {
+        -webkit-transform: rotate(0);
+        -ms-transform: rotate(0);
+        -o-transform: rotate(0);
+        transform: rotate(0)
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
+@-moz-keyframes circle {
+    0% {
+        -webkit-transform: rotate(0);
+        -ms-transform: rotate(0);
+        -o-transform: rotate(0);
+        transform: rotate(0)
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
+@-o-keyframes circle {
+    0% {
+        -webkit-transform: rotate(0);
+        -ms-transform: rotate(0);
+        -o-transform: rotate(0);
+        transform: rotate(0)
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
+@keyframes circle {
+    0% {
+        -webkit-transform: rotate(0);
+        -ms-transform: rotate(0);
+        -o-transform: rotate(0);
+        transform: rotate(0)
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
+.app__logo {
+    position: absolute;
+    left: 25px;
+    top: 25px;
+    color: red
+}
+@media only screen and (max-width: 480px) {
+    .legend__label {
+        font-family: "SourceSansPro Bold";
+        font-size: 9.5px;
+        fill: #000
+    }
+    .legend__median__text {
+        font-family: "SourceSansPro Regular";
+        font-size: 10px
+    }
+}
+@media only screen and (max-width: 560px) {
+    .ttip {
+        padding: 10px;
+        width: 150px;
+        height: 52.5px
+    }
+    .ttip__icon {
+        float: left;
+        width: 25%;
+        height: 100%;
+        border-radius: 100%;
+        background: #ffee8e
+    }
+    .ttip__details {
+        float: left;
+        padding-left: 10px;
+        width: 72.5%;
+        font-size: 11px
+    }
+    .ttip__details__name {
+        font-family: "SourceSansPro Bold"
+    }
+    .ttip__details__median__change {
+        padding: 0 0 0 18.75px
+    }
+    .ttip__details__median__change--down,
+    .ttip__details__median__change--even,
+    .ttip__details__median__change--up {
+        background-size: 15px 100%
+    }
+}
+@media only screen and (max-width: 480px) {
+    .menu {
+        text-align: left;
+        top: auto;
+        right: auto;
+        bottom: 15px;
+        left: 15px
+    }
+    .menu button {
+        display: none
+    }
+    .zoom-menu img {
+        position: inherit;
+        left: 0;
+        top: 0;
+        float: none
+    }
+}
+@media only screen and (max-width: 480px) {
+    .note span {
+        padding-left: 2px
+    }
+}
+@media only screen and (max-width: 480px) {
+    .app__loading {
+        top: 42.5%;
+        left: 42.5%
+    }
+}
+@media only screen and (max-width: 700px) {
+    .title__main {
+        font-size: 28px
+    }
+    .title__sub {
+        font-size: 13px
+    }
+}
