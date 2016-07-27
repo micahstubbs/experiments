@@ -1,0 +1,17 @@
+{
+  "name": "test-countries",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "i18n-iso-countries": "^0.14.0"
+  },
+  "devDependencies": {
+    "i18n-iso-countries": "^0.14.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT"
+}
