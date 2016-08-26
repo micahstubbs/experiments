@@ -1,7 +1,6 @@
 This iteration 
 
-+ transition detail points from parent aggreate point position
-  to actual position
++ uses data from the cover type data set aggregated with h2o's aggregator model
 
 ---
 Original README.md
