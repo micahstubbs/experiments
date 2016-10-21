@@ -141,7 +141,7 @@ circleGroup.selectAll("countries")
 		.attr("r", function(d) {return rScale(d.GDP);})
 		.attr('data-content', 'some data content')
 		.attr('data-toggle', 'popover')
-		.attr('data-duration', 50)
+		.attr('data-duration', 100)
 		.classed('popover-via-hover', true)
 		.style("opacity", opacityCircles)
 		.style("fill", function(d) {return color(d.Region);})
@@ -340,29 +340,28 @@ function removeTooltip (d, i) {
 
 //Show the tooltip on the hovered over slice
 function showTooltip (d, i) {
-	
 	//Save the chosen circle (so not the voronoi)
 	var element = d3.select(".countries."+d.CountryCode),
-      el = element._groups[0];
+ 	    el = element._groups[0];
 
-//define some variables or get their values from other scripts
-var someTitleFromOtherCode = 'Sample title';
-var someContentFromOuterSpace = '<p>Some sample message.</p>';
+	//define some variables or get their values from other scripts
+	var someTitleFromOtherCode = 'Sample title';
+	var someContentFromOuterSpace = '<p>Some sample message.</p>';
 
-console.log('d from showTooltip', d);
+	console.log('d from showTooltip', d);
 
-// //demo popover. trigger via hover
-popover1 = new Popover(`.${d.CountryCode}`, { 
-	trigger: 'hover',
-	template: '<div class="popover" role="tooltip">'
-  + '<div class="arrow"></div>'
-  + '<h3 class="popover-title">'+someTitleFromOtherCode+'</h3>'
-  + '<div class="popover-content">'+someContentFromOuterSpace+'</div>'
-  + '</div>'
-});
+	// demo popover trigger via hover
+	popover1 = new Popover(`.${d.CountryCode}`, { 
+		trigger: 'hover',
+		template: '<div class="popover" role="tooltip">'
+	  + '<div class="arrow"></div>'
+	  // + '<h3 class="popover-title">'+someTitleFromOtherCode+'</h3>'
+	  + '<div class="popover-content">'+ "<span style='font-size: 11px; text-align: center;'>" + d.Country + "</span>" +'</div>'
+	  + '</div>'
+	});
 
-console.log('popover1', popover1);
-popover1.open();
+	console.log('popover1', popover1);
+	popover1.open();
 
 	//Define and show the tooltip
 	// $(el).popover({
